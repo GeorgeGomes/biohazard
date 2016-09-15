@@ -1,9 +1,9 @@
 /bootstrap/compiled.php
 api.sublime-workspace
 api.sublime-project
-/vendor
-composer.phar
-composer.lock
+#/vendor
+#composer.phar
+#composer.lock
 .env.*.php
 .env.php
 .DS_Store
