@@ -1,0 +1,104 @@
+#doc-hero-overlay:after {
+    content: "";
+    position: absolute;
+    background: url(../img/assets/dot-pattern.png) repeat;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;   
+}
+
+#masthead {
+	min-height: ;
+    background-color: #F2F2F2;
+    padding-bottom: 16px;
+    
+}
+
+#masthead h1 {
+	font-size: 30px;
+	line-height: 1;
+  	padding-top:20px;
+}
+
+#masthead .well {
+	margin-top:8%;
+}
+
+@media screen and (min-width: 768px) {
+	#masthead h1 {
+		font-size: 50px;
+	}
+}
+.nav-stacked  > li > a,
+.nav-stacked > li > a:focus {
+    background-color: #F2F2F2;
+    position: relative;
+    display: block;
+    padding: 10px 15px; 
+    font-size: 13px;
+    font-weight: 400; 
+    color: #888;
+    
+    border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	-o-border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+}
+.nav-stacked > li > a:hover {
+    background: #333!important;
+    color: #fff;
+}
+    
+
+.navbar-bright {
+	background-color:#111155;
+    color:#fff;
+    
+}
+
+.affix-top,.affix{
+	position: static;
+}
+
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+  	margin-top:30px;
+  	width:228px;
+      
+  }
+  
+  #sidebar.affix {
+    position: fixed;
+    top:70px;
+    width:228px;
+      
+      
+  }
+}
+
+#sidebar li.active {
+  	border:0 #1a2024 solid;
+  	border-right-width:4px;
+}
+
+
+.nav-stacked {
+    color: #e0ad44;
+}
+.box {
+    padding: 0;
+}
+pre {
+    background: #f2f2f2;
+    border: none;
+    border-radius: 3px;
+    margin: 0;
+    padding: 15px 10px 14px 20px;
+}
+.code-highlight {
+    border:1px #6f5499 dotted;
+    padding: 3px;
+}

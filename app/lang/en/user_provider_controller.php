@@ -1,0 +1,111 @@
+<?php
+return array(
+
+   'mail_activated'	=>	'Your email is already activated, please Login',
+   'something_wrong'	=>	'Something went Wrong',
+   'dont_type'	=>	'You don\'t have the',
+   'contact_admin'	=>	'Type. Please enter in contact with your admin',
+
+   'first_name_needed'	=>	'First Name is Needed.',
+   'last_name_needed'	=>	'Last Name is Needed.',
+   
+   'phone_needed'	=>	'Phone is needed.',
+   'phone_used'		=>	'Phone must unique.',
+
+   'mail_needed'	=>	'E-mail must be filled.',
+   'mail_invalid'	=>	'E-mail is invalid.',
+   'mail_unique'	=>	'E-mail already exists.',
+
+   'password_needed'	=>	'Password needed.',
+   'password_invalid'	=>	'Password must contain at least 6 characters.',
+
+   //TODO: Delete this in the future
+   'all_fields'	=>	'Please enter all fields',
+   'mail_fields'	=>	'Please enter valid email',
+   'phone_fields'	=>	'Please, enter a valid and unique phone number',
+   //-------------------------------
+   
+   'user_registered'	=>	'You are succesfully registered',
+   'mail_registered'	=>	'Your email is already registered',
+   'mail_not_registered'	=>	'Your email is not registered',
+   'welcome'	=>	"Welcome to ",
+   'new_password'	=>	"Your New Password ",
+   'password_reset'	=>	"password succesfully reseted. Please check your inbox to get the new password",
+   'invalid_mail_pass'	=>	"Invalid Email or Password",
+   'activate_mail'	=>	"Please Activate your email",
+   'invalid_mail'	=>	"Invalid Email",
+   'success_rate'	=>	"You succesfully rated the user",
+   'payment_wrong'	=>	"Something went wrong with the payment. Please try again",
+   
+   'have_any'	=>	'You don\'t have any ',
+   'in_progress'	=>	' in progress',
+   'accepted'	=>	' accepted',
+   'new_request'	=>	"New Request",
+   'status_of'	=>	"Status of ",
+   'my_service'	=>	"My Services",
+
+	'Date'	=>	'Date',
+	'Cliente_name'	=>	'Clients Name',
+	'Service_type'	=>	'Services Type',
+	'Distance'	=>	'Distance (KMs)',
+	'time'	=>	'Time (Minutes)',
+	'earning'	=>	'Earning',
+	'total_ride'	=>	'Total Riding',
+	'total_distance'	=>	'Total Distance Covered (KMs)',
+	'average_rate'	=>	'Avarage Rate',
+	'total_earning'	=>	'Total Earning',
+	'my_trips'	=>	'My Services',
+	'my_profile'	=>	'My Profile',
+	'image_needed'	=>	'Image Needed',
+	'image_not_allow'	=>	'Image in wrong format (Use image on format jpeg, bmp and png)',
+	'profile_success_update'	=>	'Profile Successfuly Updated',
+	'password_updated'	=>	'Password Successfuly Updated',
+	'password_old_wrong'	=>	"Please enter your current password",
+	'password_dont_match'	=>	'Your New Password and Confirm Password fields doesn\'t match',
+
+	'my_doc'	=>	'My Documents',
+	'hi'	=>	'Hi,',
+	'doc_wait'	=>	' Upload your document and wait for Admin Approval',
+	'wait_approval'	=>	'Waiting Approval',
+	'doc_updated'	=>	'Documents succesfully updated',
+	'week_pay'	=>	'Weekly Payments',
+	'driver_list'	=>	'Drivers List',
+	
+	'price_policy'	=>	'Services & Prices',
+
+	'card_add'	=>	'Card Successfuly Added',
+	'rate_driver'	=>	'Driver Successfuly Rated',
+	'request_canceled'	=>	'Request Cancelled',
+	'request_canceled_success'	=>	'Request Successfuly Cancelled',
+	'request_trip'	=>	'Request Trip',
+	'status_trip'	=>	'Status Trip',
+	'select_service'	=>	'Please Select a Services Type',
+	'invalid_promo_code'	=>	'Invalid Promotional Code',
+	'no_match'	=>	'Didn\'t found any ',
+	'with_request'	=>	'match with your request',
+
+	'request_success'	=>	'Your Request is successful. Please wait while we are finding a nearest ',
+	'for_you'	=>	' for you ',
+	'register_success_login'	=>	'You have successfully registered. <br>Please Login',
+	'mail_not_registered'	=>	'Email not Registered',
+	'miss_unique_id'	=>	'Your unique ID is missing',
+	'payments_and_credits'	=>	'Payments and Credits',
+	'remove_card'	=>	"Your card is successfully removed",
+
+	'referral_updated'	=>	"Referral Code Successfuly Updated",
+	'referral_create'	=>	"Referral Code Successfuly Created",
+	'arrive_destine'	=>	" will arrive on his destine ",
+	'estimated_info'	=>	" (Estimated Time) <br><br><br>For More Information---<br>",
+	'eta_from'	=>	"ETA from ",
+	'eta_share_success'	=>	"ETA Successfuly Shared",
+
+	'holder_required' => 'Holder is required',
+	'document_required' => 'Document is required',
+	'bank_required' => 'Bank is required',
+	'agency_required' => 'Agency is required',
+	'account_required' => 'Account is required',
+	'account_digit_required' => 'Account digit is required',
+	'bank_account_success_update' => 'Bank account successfully saved',
+	'bank_account_error_update' => 'Error while saving bank account info',
+	'option_document_required' => 'Tipo de documento é obrigatório'		
+);

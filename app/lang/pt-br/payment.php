@@ -1,0 +1,53 @@
+<?php
+
+return array(
+
+	'filter_data'		=> 'Filtrar Dados',
+	'with'		=> 'Pagamento com',
+	'pay_card'		=> 'Pagamento com Cartão de Crédito',
+	'down_report'		=> 'Download do Relatório',
+	'user_name'		=> 'Nome do Proprietário',
+	'ledger_pay'		=> 'Livro-caixa de Pagamento',
+	'promo_referral'		=> 'Desconto Promocional',
+	'cash'		=> 'Dinheiro',
+	'trip'		=> 'Serviços',
+	'total'		=> 'Total',
+	'week_finish'		=> 'Semana Terminando em',
+	'download'		=> 'Download',
+	'add_request'		=> 'Adicionar Pedido',
+	'code_promo_add'		=> 'Adicionar Código Promocional',
+	'code_promo_name'		=> 'Nome do Código Promocional',
+	'code_promo_amount'		=> 'Valor do Código Promocional',
+	'code_promo_type'		=> 'Tipo de Código Promocional',
+	'percentage'		=> 'Porcentagem',
+	'absolute'		=> 'Absoluto',
+	'user_allowed'		=> 'Usuários Permitidos',
+	'liquid'		=> 'Total Liquido',
+	'transport_service'		=> 'Serviço de Transporte',
+	'invoice_emission'		=> 'Emissão de Fatura de',
+	'tax_date'		=> 'Imposto da Data',
+	'invoice_number'		=> 'Número da Fatura',
+	'description'		=> 'Descrição',
+	'week_total'		=> 'Total da Semana',
+	'week_end'		=> 'Semana Termina em',
+	'value_pay'		=> 'Valor a Pagar ao',
+	'receive_value'		=> 'Valor a Receber de',
+	'net_value'		=> 'Valor Líquido',
+	'not_found'		=> 'Página Não Encontrada',
+	
+	'dollar_sign'	=> 'R$',
+
+	'Payment'		=> 'Pagamentos',
+    'Referral_payment'		=> 'Pagamentos com Desconto',
+    'Refund'		=> 'Reembolsos',
+    'Transfer'		=> 'Transferências',
+    'transfer_amount'		=> 'Transferir Quantidade',
+
+	'required_field'	=> "Este campo é obrigatório.",
+	'base_transaction_id' =>'ID da Transação (Base)',
+	'complete_transaction_id' => 'ID da Transação (Final)',
+	'base_transaction_transfer_status' => 'Status da Transferência (Base)',
+	'complete_transaction_transfer_status' => 'Status da Transferência (Final)',
+	'paid' => 'Pago',
+	'pending' => 'Pendente'
+);

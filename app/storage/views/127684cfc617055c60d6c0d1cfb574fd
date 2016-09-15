@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="Dashboard">
+		<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+
+		<title><?php echo Config::get('app.website_title'); ?></title>
+
+
+		<!-- Bootstrap core CSS -->
+		<link href="<?php echo asset_url(); ?>/web/css/bootstrap.css" rel="stylesheet">
+		<link href="<?php echo asset_url(); ?>/web/css/bootstrap-tour.min.css" rel="stylesheet">
+
+		<!--external css-->
+		<link href="<?php echo asset_url(); ?>/web/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+		<!-- Custom styles for this template -->
+		<link href="<?php echo asset_url(); ?>/web/css/style.css" rel="stylesheet">
+		<link href="<?php echo asset_url(); ?>/web/css/style-responsive.css" rel="stylesheet">
+		<!-- Style for tree view component -->
+		<link href="<?php echo asset_url(); ?>/admins/css/treeview/bootstrap-treeview.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<?php
+			$theme = Theme::first();
+			$active = '#000066';
+			$logo = '/image/logo.png';
+			$favicon = '/image/favicon.ico';
+			if($theme) {
+				$active = $theme->active_color;
+				$favicon = '/uploads/' . $theme->favicon;
+				$logo = '/uploads/' . $theme->logo;
+			}
+			if ($logo == '/uploads/') {
+				$logo = '/image/logo.png';
+			}
+			if ($favicon == '/uploads/') {
+				$favicon = '/image/favicon.ico';
+			}
+		?>
+
+		<link rel="icon" type="image/ico" href="<?php echo asset_url(); ?><?php echo $favicon; ?>">
+
+		<script src="http://momentjs.com/downloads/moment.min.js"></script>
+		<script src="http://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+			
+
+	</head>
+
+	<body>
+
+		<!-- **********************************************************************************************************************************************************
+		MAIN CONTENT
+		*********************************************************************************************************************************************************** -->
+
+		<div id="login-page">
+			<div class="container">
+				<a href="<?php echo Settings::getWebsiteUrl(); ?>" class="col-md-2 col-xs-12">
+				<img class="imghome" src="<?php echo web_url(); ?><?php echo $logo; ?>" alt="Logo" style="width:100%;"></a>
+				<form onsubmit="validate()" class="form-login" id="form-login" action="<?php echo URL::Route('ProviderSave'); ?>" method="post">
+					<h2 class="form-login-heading"><?php echo trans('login.register');; ?></h2>
+					<div class="login-wrap">
+
+						<?php if(Session::has('error')): ?>
+						<div class="alert alert-danger">
+							<b><?php echo Session::get('error'); ?></b> 
+						</div>
+						<?php endif; ?>
+
+						<?php
+							if(Session::has('fields')) {
+								$fields = Session::get('fields');
+							}
+							
+							if(Session::has('selectedTypes')) {
+								$selectedTypes = Session::get('selectedTypes');
+							}
+							
+							if(Session::has('selectedTypeCategories')) {
+								$selectedTypeCategories = Session::get('selectedTypeCategories');
+							}
+						?>
+
+						<input type="text" id="first_name" name="first_name" class="form-control" maxlength="30" required placeholder="* <?php echo trans('provider.first_name');; ?>" value="<?php echo $fields['first_name']; ?>" autofocus>
+						<br>
+						<input type="text" id="last_name" name="last_name" class="form-control" maxlength="30" required placeholder="* <?php echo trans('provider.last_name');; ?>" value="<?php echo $fields['last_name']; ?>">
+						<br>
+						<!-- <span id="no_email_error1" style="display: none"> </span> -->
+						<input type="email" id="email" name="email" maxlength="60" class="form-control" required placeholder="* <?php echo trans('provider.mail_grid');; ?>" value="<?php echo $fields['email']; ?>">
+						<br>
+						<input type="password" id="password" name="password" maxlength="20" class="form-control" required placeholder="* <?php echo trans('login.password');; ?>">
+						<br>
+
+						<div class="form-group">
+								
+							<input type="tel" name="phone" id="phone" maxlength="18" class="form-control intl-tel-input" required placeholder="*   <?php echo trans('login.mobile_number');; ?>" value="<?php echo $fields['phone']; ?>">
+
+							<input type="text" name="valid_phone" id="valid_phone" value=""  style="visibility:hidden;" />
+						
+						</div>
+
+						<!-- <span id="no_mobile_error1" style="display: none"> </span> -->
+						
+
+						<div class="form-group">
+							<label >* <?php echo trans('provider.service_types');; ?></label>
+							<input type="text" name="provider_type" id="provider_type" value=""  style="visibility:hidden;" />
+							<div id="treeview-checkable" class=""></div>
+							
+
+						<input type="text" class="form-control" name="car_number" maxlength="15" placeholder="<?php echo trans('provider.car_plate');; ?>" value="<?php echo $fields['car_number']; ?>">
+						<br>
+						<input type="text" class="form-control" name="car_brand" maxlength="15" placeholder="<?php echo trans('provider.car_brand');; ?>" value="<?php echo $fields['car_brand']; ?>"><br>
+
+						<input type="text" class="form-control" name="car_model" maxlength="15" placeholder="<?php echo trans('provider.car_model');; ?>" value="<?php echo $fields['car_model']; ?>"><br>
+
+						<input type="tel" class="form-control" name="zipcode" id="cep" maxlength="10" placeholder="<?php echo trans('provider.zipcode');; ?>" value="<?php echo $fields['zipcode']; ?>">
+						<br>
+						
+						<input type="text" class="form-control" name="address" id="address" maxlength="30" placeholder="<?php echo trans('provider.address');; ?>" value="<?php echo $fields['address']; ?>">
+						<br>
+						
+						<input type="text" class="form-control" name="address_number" id="address_number" maxlength="10" placeholder="<?php echo trans('provider.address_number');; ?>" value="<?php echo $fields['address_number']; ?>">
+						<br>
+						
+						<input type="text" class="form-control" name="address_complements" id="address_complements" maxlength="10" placeholder="<?php echo trans('provider.address_complements');; ?>" value="<?php echo $fields['address_complements']; ?>">
+						<br>
+						
+						<input type="text" class="form-control" name="address_neighbour" id="address_neighbour" maxlength="30" placeholder="<?php echo trans('provider.address_neighbour');; ?>" value="<?php echo $fields['address_neighbour']; ?>">
+						<br>
+						
+						<input type="text" class="form-control" name="address_city" id="address_city" maxlength="30" placeholder="<?php echo trans('provider.address_city');; ?>" value="<?php echo $fields['address_city']; ?>">
+						<br>
+
+						<input type="text" class="form-control" name="state" id="state" maxlength="20" placeholder="<?php echo trans('provider.state');; ?>" value="<?php echo $fields['state']; ?>">
+						<br>
+
+						<input type="text" class="form-control" name="country" id="country" maxlength="20" placeholder="<?php echo trans('provider.country');; ?>" value="<?php echo $fields['country']; ?>">
+						<br>
+						<label><input id="accept_terms" required name="accept_terms" type="checkbox"> <?php echo trans('providerController.read_terms');; ?>
+
+
+							<a target="_blank" href="<?php echo 'http://' . $_SERVER['SERVER_NAME'].'/page/termos-de-uso-prestador' ?>"><?php echo trans('providerController.terms');; ?>*</a>
+							
+						</label>
+
+						<br><br>
+
+						<p>* Os campos com (*) são obrigatórios.</p>
+						<br>
+
+
+						<input type="hidden" name="timezone" id="tz_info" value="">
+						<button class="btn btn-theme btn-block" type="submit" id="provider-signup"><i class="fa fa-lock"></i> <?php echo trans('login.register');; ?></button>
+						<hr>
+						<div class="registration">
+							<?php echo trans('login.have_account');; ?><br/>
+							<a class="" href="<?php echo URL::Route('ProviderSignin'); ?>">
+								<?php echo trans('login.login');; ?>
+
+							</a>
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- js placed at the end of the document so the pages load faster -->
+		<script src="<?php echo asset_url(); ?>/javascript/jquery-1.11.1.js"></script>
+		<script src="<?php echo asset_url(); ?>/web/js/bootstrap.min.js"></script>
+		<script src="<?php echo asset_url(); ?>/javascript/jquery-validation/jquery.validate.min.js"></script>
+		<script src="<?php echo asset_url(); ?>/javascript/jquery-validation/additional-methods.min.js"></script>
+		<script src="<?php echo asset_url(); ?>/web/js/bootstrap-tour.min.js"></script>
+
+		<!-- JS for tree view component -->
+		<script src="<?php echo asset_url(); ?>/admins/js/plugins/treeview/bootstrap-treeview.min.js"></script>
+
+		<!-- tel input libs -->
+		<link rel="stylesheet" href="<?php echo asset_url();; ?>/library/telinput/css/intlTelInput.css">
+		<script src="<?php echo asset_url();; ?>/library/telinput/js/intlTelInput.min.js"></script>
+		<style type="text/css">
+			.intl-tel-input {width: 100%;}
+		</style>
+
+		<!-- TODO: Background-image should not appear o provider signup -->
+		<!--BACKSTRETCH-->
+		<!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+		
+		<script type="text/javascript" src="<?php echo asset_url(); ?>/web/js/jquery.backstretch.min.js"></script>
+		<script>
+			$.backstretch("<?php echo asset_url(); ?>/web/img/bh.jpg", {speed: 500});
+		</script>
+
+		
+		
+
+		<script type="text/javascript">
+			/**
+			 *  Fill user address info based on the zipcode
+			 */
+			$("#cep").focusout(function(){
+				var typedZipCode = $("#cep").val(); 
+				var result = typedZipCode.match(/\d+/g);
+				var resquestAddr="https://api.postmon.com.br/v1/cep/"+result[0]+result[1]+result[2];
+				
+				$.get(resquestAddr, function(data, status){
+					$("#address").val(data.logradouro);
+					$("#address_neighbour").val(data.bairro);
+					$("#address_city").val(data.cidade);
+					$("#state").val(data.estado_info.nome);
+					// TODO: Country must be selected from a dropdown list
+					$("#country").val("Brasil");
+				});
+			});
+			// Apply a mask in phone and cep field as document is ready
+			$(document).ready(function() {
+				var formValidator = $("#form-login").validate({
+					rules: {
+						first_name: "required",
+						last_name: "required",
+						email: {
+							required: true,
+							email: true,
+						},
+						password: {
+							required: true,
+							minlength: 6,
+						},
+						phone: "required",
+						valid_phone: "required",
+						provider_type: {
+							required: true
+						},
+						accept_terms: {
+							required:true
+						}
+						
+					},
+					messages: {
+						first_name: "<?php echo trans('user_provider_controller.first_name_needed'); ?>",
+						last_name: "<?php echo trans('user_provider_controller.last_name_needed'); ?>",
+						email: {
+							required: "<?php echo trans('user_provider_controller.mail_needed'); ?>",
+							email: "<?php echo trans('user_provider_controller.mail_invalid'); ?>",
+						},
+						password: {
+							required: "<?php echo trans('user_provider_controller.password_needed'); ?>",
+							minlength: "<?php echo trans('user_provider_controller.password_invalid'); ?>",
+						},
+						phone: "<?php echo trans('user_provider_controller.phone_needed'); ?>",
+						valid_phone: "<?php echo trans('providerController.invalid_phone_number'); ?>",
+						provider_type: "<?php echo trans('providerController.choose_service'); ?>",
+						accept_terms: "<?php echo trans('providerController.accept_terms'); ?>"
+					},
+					errorPlacement: function(error, element) {
+						var placement = $(element).data('error');
+						if (placement) {
+							$(placement).append(error);
+						} else {
+							error.insertAfter(element);
+						}
+					},
+				});
+
+				var varPhone = $('#phone').val();
+				var varCEP = $('#cep').val();
+				var varTerms = $('#accept_terms').val();
+
+				if (varCEP || varCEP.length != 0) {
+					$('#cep').val($('#cep').val().replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2-$3"));
+				}
+
+				if (varTerms != true) {
+					$('#accept_terms').val(true);
+				}
+
+				var telInput = $("#phone"),
+				  	validPhone = $("#valid_phone");
+
+				// initialise plugin
+				telInput.intlTelInput({
+				  utilsScript: "<?php echo asset_url();; ?>/library/telinput/js/utils.js"
+				});
+
+				
+				// on blur: validate
+				telInput.blur(function() {
+
+					if ($.trim(telInput.val())) {
+						if (telInput.intlTelInput("isValidNumber")) {
+							validPhone.val(1);
+							formValidator.element('#valid_phone');
+						} else {
+							validPhone.val('');
+							formValidator.element('#valid_phone');
+						}
+				  	}
+				});
+
+			});
+
+			
+
+			function validateTerms(o,f){
+				var checkterm = document.getElementsByName("accept_terms");
+			    
+			    if(checkterm.checked==false) {
+			        alert('Please accept the terms');
+			        return false;
+			    }
+			    return true;
+			}
+		
+
+			function mascara(o,f){
+				v_obj=o
+				v_fun=f
+				setTimeout("execmascara()",1)
+			}
+			function execmascara(){
+				v_obj.value=v_fun(v_obj.value)
+			}
+			//Regex para o número de telefone
+			function phoneMask(v){
+				v=v.replace(/\D/g,"");						//Remove tudo o que não é dígito
+				v=v.replace(/^(\d{2})(\d)/g,"($1) $2");		//Coloca parênteses em volta dos dois primeiros dígitos
+				v=v.replace(/(\d)(\d{4})$/,"$1-$2");		//Coloca hífen entre o quarto e o quinto dígitos
+				return v;
+			}
+			//Regex para o CEP
+			function zipcodeMask(v){
+				v=v.replace(/\D/g,"");						//Remove tudo o que não é dígito
+				v=v.replace(/^(\d{2})(\d)/g,"$1.$2");		//Coloca ponto apos os dois primeiros digitos
+				v=v.replace(/(\d{3})(\d{1,})$/,"$1-$2");	//Coloca hífen entre o quinto e o sexto dígito
+				return v;
+			}
+			function id( el ){
+				return document.getElementById( el );
+			}
+			window.onload = function() {
+				id('cep').oninput = function() {
+					mascara( this, zipcodeMask );
+				}
+			}
+		</script>
+
+		<script type="text/javascript">
+			
+			
+			$(document).ready(function() {
+				defaultData = <?php echo $treeServiceCategories; ?> ;
+				var $checkableTree = $('#treeview-checkable').treeview({
+					data: defaultData,
+					showIcon: false,
+					showCheckbox: false,
+					highlightSelected: true ,
+					multiSelect: true ,
+					icon: null ,
+					emptyIcon : null ,
+					collapseIcon: null ,
+					expandIcon : null ,
+					onNodeSelected: function(event, node) {
+						//console.log(node);
+					
+						if(node.nodes != undefined && node.nodes.length){
+							node.nodes.forEach(function(child){
+
+								$('#treeview-checkable').treeview('selectNode', [ child.nodeId, { silent: false }]);
+							});
+						}
+
+						//console.log(node);
+						
+						if(node.parentId != undefined){
+
+							parentNode = $('#treeview-checkable').treeview('getParent', node); 
+							
+							if(parentNode.nodes != undefined && parentNode.nodes.length){
+								countSelected = 0 ;
+								parentNode.nodes.forEach(function(child){
+									if(child.state.selected == true)
+										countSelected++ ;
+								});
+
+								if(countSelected == parentNode.nodes.length){
+									$('#treeview-checkable').treeview('selectNode', [ node.parentId, { silent: false }]);
+								}
+							}
+
+						}
+
+
+						selectedData = $('#treeview-checkable').treeview('getEnabled');
+						//console.log(selectedData.length);
+						if(selectedData.length != 0)
+							$("#provider_type").val(JSON.stringify(selectedData));
+						else
+							$("#provider_type").val("");
+						//console.log($("#provider_type").val());
+					},
+					onNodeUnselected: function (event, node) {
+					
+						if(node.nodes != undefined && node.nodes.length){
+							node.nodes.forEach(function(child){
+
+								$('#treeview-checkable').treeview('unselectNode', [ child.nodeId, { silent: false }]);
+							});
+						}
+
+						if(node.parentId != undefined){
+
+							parentNode = $('#treeview-checkable').treeview('getParent', node); 
+							
+							if(parentNode.nodes != undefined && parentNode.nodes.length){
+								countUnSelected = 0 ;
+								parentNode.nodes.forEach(function(child){
+									if(child.state.selected != true)
+										countUnSelected++ ;
+								});
+
+								if(countUnSelected == parentNode.nodes.length){
+									$('#treeview-checkable').treeview('unselectNode', [ node.parentId, { silent: false }]);
+								}
+							}
+
+						}
+
+						selectedData = $('#treeview-checkable').treeview('getEnabled');
+						//console.log(selectedData.length);
+						if(selectedData.length != 0)
+							$("#provider_type").val(JSON.stringify(selectedData));
+						else
+							$("#provider_type").val("");
+						
+					}
+				});
+
+			});
+
+			var tour = new Tour(
+			{
+				name: "providerappSignup",
+				template:  "<div class='popover tour'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><div class='popover-navigation'><button class='btn btn-default' data-role='prev'><?php echo trans("user_provider_web.prev_tour_step");; ?></button><button class='btn btn-default' data-role='next'><?php echo trans("user_provider_web.next_tour_step");; ?></button><button class='btn btn-default' data-role='end'><?php echo trans("user_provider_web.end_tour");; ?></button></div></div>",
+			});
+
+			// Add your steps. Not too many, you don't really want to get your users sleepy
+			tour.addSteps([
+				{
+					element: "#provider-signup",
+					title: "<?php echo trans("login.enter_new_provider");; ?>",
+					content: "<?php echo trans("login.enter_new_provider_message");; ?>",
+				},
+			]);
+
+			// Initialize the tour
+			tour.init();
+
+			// Start the tour
+			tour.start();
+
+			//TODO: Fix timezone
+			//var tz = jstz.determine();
+			//console.log(tz.name());
+			//$("#timezone").val(tz.name());
+	
+			
+		</script>
+
+		
+
+	</body>
+</html>

@@ -1,0 +1,821 @@
+<!doctype html>
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>Move</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<!--<link rel="shortcut icon" href="favicon.ico">-->
+	<!--<link rel="icon" type="image/ico" href="http://chofer.versaoemteste.com.br/uploads/1467652289651108192icon.gif">-->
+
+	<link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="fav/manifest.json">
+	<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="stylesheet" href="/website/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/website/css/sweetalert.css">
+	<link rel="stylesheet" href="/website/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="/website/css/animate.css">
+
+	<link rel="stylesheet" href="/website/css/owl.carousel.css">
+	<link rel="stylesheet" href="/website/css/owl.theme.css">
+	<link rel="stylesheet" href="/website/css/styles.css">
+	<script src="/website/js/modernizr.custom.32033.js"></script>
+
+	<!--[if IE]><script type="text/javascript" src="/website/js/excanvas.compiled.js"></script><![endif]-->
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+
+	<div class="pre-loader">
+		<div class="load-con">
+			<!--<img src="http://chofer.versaoemteste.com.br/uploads/1467652224971262244.gif" class="animated fadeInDown" alt="" width="200">-->
+			<div class="spinner">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Wrap all page content here -->
+	<div id="wrap">
+
+		<header class="masthead">
+			<!-- Fixed navbar -->
+			<div class="navbar navbar-static-top" id="nav" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Alternar Navegação</span>
+								<i class="fa fa-align-justify"></i>
+							</button>
+						<a class="navbar-brand" href="#">
+							<img src="/website/img/logo_clean.png" alt="">
+						</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav social hidden-xs hidden-sm">
+							<li><a href="https://twitter.com/chofer_app" target="_blank"><i class="fa fa-twitter fa-lg fa-fw"></i></a></li>
+							<li><a href="https://www.facebook.com/appchofer" target="_blank"><i class="fa fa-facebook fa-lg fa-fw"></i></a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#features">Motorista</a></li>
+							<li><a href="#features-user">Usuário</a></li>
+							<li><a href="#pacotes">Serviços</a></li>
+							<li><a href="#download">Download</a></li>
+							<li><a href="#settings">Sobre</a></li>
+							<li><a href="#contact">contato</a></li>
+							<li><a href="#contact">Minha Conta</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!--/.container -->
+			</div>
+			<!--/.navbar -->
+		
+		
+			<div class="slider-container" id="slider">
+				<div class="container">
+					<div class="row mh-container">
+						<img src="/website/img/logo.png" class="logo" />
+						<h3>Pegue o seu Chofer</h3>
+						<div class="col-md-2 col-sm-4 col-xs-6" style="margin:0 auto;float:none;">
+							<div class="btn-group btn-group-justified btn-lg small">
+								<div class="btn-group text-right">
+									<!--<a href="36" onclick="window.open('36');
+												window.open('35');
+												return false;" target="_blank" class="btn btn-default scrollpoint sp-effect6">
+										<span class="apple"></span>
+									</a>-->
+									<a class="btn btn-default scrollpoint sp-effect6 apple-store prelaunching">
+										<span class="apple"></span>
+									</a>
+								</div>
+								<div class="btn-group text-left">
+									<!--<a href="http://www.google.com" onclick="window.open('http://www.google.com');
+												window.open('http://www.google.com');
+												return false;" target="_blank" class="btn btn-default scrollpoint sp-effect6">
+										<span class="play"></span>
+									</a>-->
+									<a href="https://play.google.com/store/apps/details?id=com.br.chofer" class="btn btn-default scrollpoint sp-effect6 google-play">
+										<span class="play"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-10 col-md-push-1 mh-slider col-xs-12">
+							<div class="row">
+								<div class="col-md-3 col-xs-6 bt">
+									<a href="#features" class="btn btn-empty side">Sou motorista</a>
+								</div>
+								<div class="col-md-6 hidden-sm hidden-xs">
+									<div id="carousel-slider" class="carousel slide" data-ride="carousel">
+
+										<!-- Wrapper for slides -->
+										<div class="carousel-inner">
+											<div class="item active">
+												<img src="/website/img/slide1.png" alt="..." class="img-responsive">
+											</div>
+											<div class="item">
+												<img src="/website/img/slide2.png" alt="..." class="img-responsive">
+											</div>
+											<div class="item">
+												<img src="/website/img/slide3.png" alt="..." class="img-responsive">
+											</div>
+											<div class="item">
+												<img src="/website/img/slide4.png" alt="..." class="img-responsive">
+											</div>
+											<div class="item">
+												<img src="/website/img/slide5.png" alt="..." class="img-responsive">
+											</div>
+										</div>
+
+										<!-- Controls -->
+										<a class="left carousel-control" href="#carousel-slider" role="button" data-slide="prev">
+											<span class="slider-left"></span>
+										</a>
+										<a class="right carousel-control" href="#carousel-slider" role="button" data-slide="next">
+											<span class="slider-right"></span>
+										</a>
+									</div>
+
+								</div>
+								<div class="col-md-3 col-xs-6 bt">
+									<a href="#features-user" class="btn btn-empty side">Sou usuário</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+
+		</header>
+
+		<!--<section id="signup">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-push-2 clearfix">
+						<div class="section-heading scrollpoint sp-effect3">
+							<h3>Chofer<span> Cadastrar</span></h3>
+							<span class="divider"></span>
+						</div>
+					</div>
+
+				</div>
+				<div class="row text-center">
+					<a href="http://chofer.versaoemteste.com.br/user/signin" class="btn btn-sign-up">usuário</a>
+					<a href="http://chofer.versaoemteste.com.br/provider/signin" class="btn btn-sign-up">prestador de serviço</a>
+					<a href="http://chofer.versaoemteste.com.br/admin/login" class="btn btn-sign-up">administrador</a>
+				</div>
+
+			</div>
+
+		</section>-->
+
+		<section id="features">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-push-2 clearfix">
+						<div class="section-heading scrollpoint sp-effect3">
+							<h3>Sou<span> motorista</span></h3>
+							<span class="divider"></span>
+							<p>Conheça as vantagens de ser um motorista do Chofer.</p>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<div class="row">
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-usd fa-4x"></i>
+												</div>
+												<h4>PAGAMENTO MENSAL</h4>
+												<p>Pagamento por mensalidade sem taxas abusivas por corrida.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-car fa-4x"></i>
+												</div>
+												<h4>PARCERIAS</h4>
+												<p>Parcerias com postos e prestadores de serviços automotivos.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-bullhorn fa-4x"></i>
+												</div>
+												<h4>DIVULGAÇÃO</h4>
+												<p>Divulgação do aplicativo através de ações promocionais em massa.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-money fa-4x"></i>
+												</div>
+												<h4>PROMOÇÃO DO APP</h4>
+												<p>As 3 primeiras parcelas serão convertidas em divulgação para promoção do APP.
+												</p>
+											</div>
+										</div>
+										<div class="col-sm-12 text-center">
+											<div class="bt btn-cadastro">
+												<a href="/provider/signup" class="btn btn-empty side">Seja motorista do Chofer</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--<div class="item">
+									<div class="row">
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-flag fa-4x"></i>
+												</div>
+												<h4>TRADUÇÃO DE IDIOMAS</h4>
+												<p>Como os negócios crescem mundialmente, nosso aplicativo tem acessibilidade
+													de ser alterado para qualquer idioma.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-tags fa-4x"></i>
+												</div>
+												<h4>CÓDIGO PROMOCIONAL/DE DESCONTO</h4>
+												<p>Código Promocional é um número único que permite o usuário viajar pagando
+													menos. Você também pode compartilhar o código entre seus amigos e ambos
+													aproveitarem a promoção.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-dollar fa-4x"></i>
+												</div>
+												<h4>CALCULADOR DE TARIFAS</h4>
+												<p>Nunca pechinche com o Prestador de Serviços sobre o pagamento. O Calculador
+													de Tarifas calcula a tarifa baseado no endereço de origem e destino,
+													apresentando um preço claro e transparente. Ainda disponibiliza a tarifa
+													estimada antes da viagem começar.</p>
+											</div>
+										</div>
+									</div>
+								</div>-->
+							</div>
+							<!-- Indicators -->
+							<!--<ol class="carousel-indicators">
+								<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							</ol>-->
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section id="features-user">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-push-2 clearfix">
+						<div class="section-heading scrollpoint sp-effect3">
+							<h3>Sou<span> usuário</span></h3>
+							<span class="divider"></span>
+							<p>Conheça as vantagens de se deslocar com o Chofer.</p>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div id="carousel-example-generic-user" class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<div class="row">
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-star-o fa-4x"></i>
+												</div>
+												<h4>PRIMEIRA CORRIDA GRÁTIS</h4>
+												<p>A sua primeira corrida utilizando o aplicativo é totalmente gratuita.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-check fa-4x"></i>
+												</div>
+												<h4>INDIQUE E GANHE</h4>
+												<p>Indique um amigo e ganhe desconto na sua próxima viagem.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-user fa-4x"></i>
+												</div>
+												<h4>MOTORISTAS TREINADOS</h4>
+												<p>Nossos motoristas passam por um treinamento intenso antes de ingressar no
+													<strong>Chofer</strong>.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-trophy fa-4x"></i>
+												</div>
+												<h4>TARIFAS ECONÔMICAS</h4>
+												<p>Tarifas por viagem mais econômicas do que a concorrência.</p>
+											</div>
+										</div>
+										<div class="col-sm-12 text-center">
+											<div class="bt btn-cadastro">
+												<a class="btn btn-empty side prelaunching">Seja usuário do Chofer</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--<div class="item">
+									<div class="row">
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-flag fa-4x"></i>
+												</div>
+												<h4>TRADUÇÃO DE IDIOMAS</h4>
+												<p>Como os negócios crescem mundialmente, nosso aplicativo tem acessibilidade
+													de ser alterado para qualquer idioma.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-tags fa-4x"></i>
+												</div>
+												<h4>CÓDIGO PROMOCIONAL/DE DESCONTO</h4>
+												<p>Código Promocional é um número único que permite o usuário viajar pagando
+													menos. Você também pode compartilhar o código entre seus amigos e ambos
+													aproveitarem a promoção.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-dollar fa-4x"></i>
+												</div>
+												<h4>CALCULADOR DE TARIFAS</h4>
+												<p>Nunca pechinche com o Prestador de Serviços sobre o pagamento. O Calculador
+													de Tarifas calcula a tarifa baseado no endereço de origem e destino,
+													apresentando um preço claro e transparente. Ainda disponibiliza a tarifa
+													estimada antes da viagem começar.</p>
+											</div>
+										</div>
+									</div>
+								</div>-->
+							</div>
+							<!-- Indicators -->
+							<!--<ol class="carousel-indicators">
+								<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							</ol>-->
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section id="pacotes">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-push-2 clearfix">
+						<div class="section-heading scrollpoint sp-effect3">
+							<h3><span>Serviços</span></h3>
+							<span class="divider"></span>
+							<p>Conheça os serviços prestados pelo Chofer.</p>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div id="carousel-example-generic-pacotes" class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<div class="row">
+										<div class="col-md-4 col-sm-4">
+											<div class="feature economico scrollpoint sp-effect2">
+												<h4>ECONÔMICO</h4>
+												<!--<p>A sua primeira corrida utilizando o aplicativo é totalmente gratuita.</p>-->
+											</div>
+											<div class="row service-value">
+												<div class="col-sm-5">
+													<p class="title">Base</p>
+													<p class="value">R$2.70</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Mínima</p>
+													<p class="value">R$6.00</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Km rodado</p>
+													<p class="value">R$1.25</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Minuto</p>
+													<p class="value">R$0.20</p>
+												</div>
+
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-4">
+											<div class="feature confort scrollpoint sp-effect2">
+												<h4>CONFORT</h4>
+												<!--<p>Indique um amigo e ganhe desconto na sua próxima viagem.</p>-->
+											</div>
+											<div class="row service-value">
+												<div class="col-sm-5">
+													<p class="title">Base</p>
+													<p class="value">R$2.70</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Mínima</p>
+													<p class="value">R$7.00</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Km rodado</p>
+													<p class="value">R$1.5</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Minuto</p>
+													<p class="value">R$0.20</p>
+												</div>
+
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-4">
+											<div class="feature luxo scrollpoint sp-effect1">
+												<h4>LUXO</h4>
+												<!--<p>Nossos motoristas passam por um treinamento intenso antes de ingressar no <strong>Chofer</strong>.</p>-->
+											</div>
+											<div class="row service-value">
+												<div class="col-sm-5">
+													<p class="title">Base</p>
+													<p class="value">R$4.50</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Mínima</p>
+													<p class="value">R$10.00</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Km rodado</p>
+													<p class="value">R$2.20</p>
+												</div>
+												<div class="col-sm-5">
+													<p class="title">Minuto</p>
+													<p class="value">R$0.30</p>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--<div class="item">
+									<div class="row">
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect2">
+												<div class="icon">
+													<i class="fa fa-flag fa-4x"></i>
+												</div>
+												<h4>TRADUÇÃO DE IDIOMAS</h4>
+												<p>Como os negócios crescem mundialmente, nosso aplicativo tem acessibilidade
+													de ser alterado para qualquer idioma.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-tags fa-4x"></i>
+												</div>
+												<h4>CÓDIGO PROMOCIONAL/DE DESCONTO</h4>
+												<p>Código Promocional é um número único que permite o usuário viajar pagando
+													menos. Você também pode compartilhar o código entre seus amigos e ambos
+													aproveitarem a promoção.</p>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6">
+											<div class="feature scrollpoint sp-effect1">
+												<div class="icon">
+													<i class="fa fa-dollar fa-4x"></i>
+												</div>
+												<h4>CALCULADOR DE TARIFAS</h4>
+												<p>Nunca pechinche com o Prestador de Serviços sobre o pagamento. O Calculador
+													de Tarifas calcula a tarifa baseado no endereço de origem e destino,
+													apresentando um preço claro e transparente. Ainda disponibiliza a tarifa
+													estimada antes da viagem começar.</p>
+											</div>
+										</div>
+									</div>
+								</div>-->
+							</div>
+							<!-- Indicators -->
+							<!--<ol class="carousel-indicators">
+								<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							</ol>-->
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="download">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-push-1">
+						<h1><span>Baixe o</span> Aplicativo</h1>
+						<span class="divider"></span>
+					</div>
+					<div class="btn-group btn-group-justified btn-lg">
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<div class="row">
+									<div class="btn-group scrollpoint sp-effect4">
+										<!--<a href="36" onclick="window.open('35');" target="_blank" class="btn btn-default">
+											<span class="appstore"></span>
+										</a>-->
+										<a class="btn btn-default apple-store prelaunching">
+											<span class="appstore"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<div class="row">
+									<div class="btn-group scrollpoint sp-effect4">
+										<!--<a href="http://www.google.com" onclick="window.open('http://www.google.com');" target="_blank" class="btn btn-default">
+											<span class="playstore"></span>
+										</a>-->
+										<a href="https://play.google.com/store/apps/details?id=com.br.chofer" class="btn btn-default google-play">
+											<span class="playstore"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="settings">
+			<div class="container">
+				<div class="col-md-7">
+					<!--<img src="/website/img/weather.png" alt="" class="scrollpoint sp-effect3">-->
+					<h2 class="scrollpoint sp-effect3">Chofer <span>App</span></h2>
+
+					<p class="first">
+						Queremos promover o melhor e mais amigável serviço de transporte privado tanto para o usuário, como para o motorista.
+					</p>
+					<p>
+						Para o <b>usuário</b> queremos:
+						<ul>
+							<li>Maior conforto e excelente atendimento</li>
+							<li>Que ele deixe de se preocupar aonde estacionar, se tem ou não o mala do flanelinha</li>
+							<li>Tarifas excelentes, mais em conta do que ter um próprio veículo ao longo do ano</li>
+							<li>Ações promocionais com os principais eventos na sua cidade, se for beber vá de Chofer</li>
+						</ul>
+					</p>
+
+					<p>
+						Para o <b>motorista</b> vislumbramos:
+						<ul>
+							<li>Maior remuneração dos seus trabalhos, valorizando nosso parceiro</li>
+							<li>Número limitado de motoristas por região / cidade</li>
+							<li>Tarifas similar da concorrência</li>
+							<li>Divulgação em massa para atração de novos usuários</li>
+						</ul>
+					</p>
+
+					<!--<p>
+						<a href="#download" class="btn btn-default scrollpoint sp-effect1">Ver Demonstração</a>
+						<a href="#features" class="btn btn-empty scrollpoint sp-effect2">Aprenda Mais</a>
+					</p>-->
+				</div>
+				<div class="col-md-5 scrollpoint sp-effect5">
+					<img src="/website/img/iphone1.png" class="img-responsive hidden-xs iphone-settings" alt="">
+				</div>
+			</div>
+		</section>
+
+		<!--<section id="screenshots">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2 hidden-xs">
+							<span class="owl-prev"><i class="fa fa-chevron-left fa-2x"></i></span>
+						</div>
+						<div class="col-md-8">
+							<div class="section-heading scrollpoint sp-effect3">
+								<h3>Chofer App<span> screen shots</span></h3>
+								<span class="divider"></span>
+
+							</div>
+						</div>
+						<div class="col-md-2 hidden-xs">
+							<span class="owl-next"><i class="fa fa-chevron-right fa-2x"></i></span>
+						</div>                 
+					</div>
+				</div>
+				<div id="owl-screenshots" class="owl-carousel">
+					<div><img src="/website/img/screen1.jpg" alt=""></div>
+					<div><img src="/website/img/screen2.jpg" alt=""></div>
+					<div><img src="/website/img/screen3.jpg" alt=""></div>
+					<div><img src="/website/img/screen4.jpg" alt=""></div>
+					<div><img src="/website/img/screen5.jpg" alt=""></div>
+					<div><img src="/website/img/screen6.jpg" alt=""></div>
+					<div><img src="/website/img/screen7.jpg" alt=""></div>
+
+				</div>
+			</section>-->
+
+		<footer id="contact-form">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-push-2 clearfix">
+						<div class="section-heading scrollpoint sp-effect3">
+							<h3><span>Entre em Contato</span></h3>
+							<span class="divider"></span>
+							<p>E quando você tiver vontade de nos contatar, nós estamos na <a style="color:#fff;" href="mailto:contato@choferapp.com.br">contato@choferapp.com.br.</a>								Envie um e-mail e nós resolveremos as suas dúvidas.</p>
+						</div>
+						<!-- Start Contact Form -->
+						<section id="contato">
+							<div class="scrollpoint sp-effect2" id="contact">
+								<div id="message"></div>
+								<form method="post" action="/contact/user" name="contactform" id="contactform">
+									<fieldset>
+										<div class="col-md-6">
+											<input name="name" type="text" id="name" size="30" value="" placeholder="Nome" />
+											<br/>
+											<input name="email" type="email" id="email" size="30" value="" placeholder="E-mail" />
+											<br/>
+											<input name="phone" type="text" id="phone" size="30" value="" placeholder="Telefone" />
+										</div>
+										<div class="col-md-6">
+											<textarea name="comments" cols="40" rows="6" id="comments" placeholder="Mensagem"></textarea>
+										</div>
+										<div class="col-md-12 text-center">
+											<button type="submit" class="btn btn-empty btn-submit scrollpoint sp-effect2" id="submit">Enviar</button>
+										</div>
+									</fieldset>
+									<div id="success">
+									</div>
+								</form>
+							</div>
+						</section>
+						<!-- End Contact Form -->
+					</div>
+					<div class="col-md-12">
+						<div class="social">
+							<ul>
+								<li><a href="https://twitter.com/chofer_app" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href="https://www.facebook.com/appchofer" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+							</ul>
+						</div>
+						<p class="rights">
+							2015 <span>Chofer</span> Desenvolvido pela <a href="http://www.codificar.com.br/" target="_blank"><span>Codificar</span></a>							| <a href="/termsncondition"><span>Termos e Condições</span></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/website/js/bootstrap.min.js"></script>
+	<script src="/website/js/owl.carousel.min.js"></script>
+	<script src="/website/js/waypoints.min.js"></script>
+	<script src="/website/js/sweetalert.min.js"></script>
+
+	<script type="text/javascript" src="/website/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+	<script type="text/javascript" src="/website/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+	<script src="/website/js/script.js"></script>
+	<script src="/javascript/jquery-validation/jquery.validate.min.js"></script>
+	<script src="/javascript/jquery-validation/additional-methods.min.js"></script>
+	<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+
+
+	<script>
+		$(document).ready(function () {
+			appMaster.preLoader();
+
+			$(".prelaunching").click(function() {
+				swal({
+					title: "Disponível na segunda semana de setembro",
+					text: "Informe seu e-mail para ser avisado do lançamento.",
+					type: "input",
+					showCancelButton: true,
+					closeOnConfirm: false,
+					inputPlaceholder: "Informe seu e-mail",
+					confirmButtonText: "Enviar",
+				},
+				function(inputValue){
+					if (inputValue === false) return false;
+					
+					if (inputValue === "") {
+						swal.showInputError("Você precisa informar seu e-mail!");
+						return false
+					}
+
+					$.post("/prelaunching", "email=" + inputValue  ,  function(response) {
+
+						swal("Obrigado", "Você será avisado quando o aplicativo for lançado!", "success");
+
+					});
+					
+					
+				});
+			});
+
+			
+		});
+
+		$(document).ready(function(){
+			$('#phone').mask('(00) 00000-0000');
+		});
+
+		$("#contactform").validate({
+			rules: {
+				name: "required",
+				email: {
+					required: true,
+					email: true,
+				},
+				phone: {
+					required: true,
+					minlength: 14,
+					maxlength: 15,
+				},
+				comments: "required",
+			},
+			messages: {
+				name: "O nome é necessário.",
+				email: {
+					required: "E-mail é necessário",
+					email: "E-mail inválido",
+				},
+				phone: {
+					required: "Telefone é necessário",
+					minlength: "Telefone deve conter DDD + 8 dígitos, no mínimo.",
+					maxlength: "Telefone deve conter DDD + 9 dígitos, no máximo.",
+				},
+				comments: "A mensagem é necessária.",
+			},
+			submitHandler: function(form) {
+				// do other things for a valid form
+				$.post("/contact/user", $("#contactform").serialize()  ,  function(response) {
+					
+					swal("Obrigado", "Em breve nossa equipe de suporte irá entrar em contato com você.", "success");
+
+				});
+			  }
+		});
+</script>
+
+</body>
+
+</html>

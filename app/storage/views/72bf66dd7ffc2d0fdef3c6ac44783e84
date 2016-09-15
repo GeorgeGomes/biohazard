@@ -1,0 +1,722 @@
+<?php $__env->startSection('content'); ?>
+<?php
+$adminPermission = Session::get('adminPermission');
+
+$array[] = array();
+
+foreach ($adminPermission as $permission) {
+    $array[] = $permission->permission_id;
+}
+
+if (!isset($_COOKIE['skipInstallation'])) {
+    if (Session::has('notify')) {
+        $message = '';
+        $message1 = $message2 = $message3 = '';
+        if ($install['mail_driver'] == '' && $install['email_address'] == '' && $install['email_name'] == '') {
+            $message1 = trans('dashboard.mail_conf');
+        }
+        if ($install['twillo_account_sid'] == '' && $install['twillo_auth_token'] == '' && $install['twillo_number'] == '') {
+            $message2 = trans('dashboard.sms_conf');
+        }
+        if (($install['default_payment'] == '' && $install['braintree_environment'] == '' && $install['braintree_merchant_id'] == '' && $install['braintree_public_key'] == '' && $install['braintree_private_key'] == '' && $install['braintree_cse'] == '') && ( $install['stripe_publishable_key'] == '')) {
+            $message3 = trans('dashboard.braintree_conf');
+        }
+        if ($message1 != '' && $message2 != '' && $message3 != '') {
+            $message = trans('dashboard.miss_all_conf');;
+        } else if ($message1 != '' && $message2 != '') {
+            $message = trans('dashboard.sms_mail_conf');
+        } else if ($message1 != '' && $message3 != '') {
+            $message = trans('dashboard.mail_pay_conf');
+        } else if ($message3 != '' && $message2 != '') {
+            $message = trans('dashboard.sms_pay_conf');
+        } else if ($message1 != '' && $message3 == '' && $message2 == '') {
+            $message = $message1;
+        } else if ($message2 != '' && $message1 == '' && $message3 == '') {
+            $message = $message2;
+        } else if ($message3 != '' && $message1 == '' && $message2 == '') {
+            $message = $message3;
+        }
+
+        if ($message != '') {
+            ?>
+            <div id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><?php echo trans('dashboard.notif_install');; ?></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p><?php echo $message; ?></p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="<?php echo URL::Route('AdminSettingDontShow'); ?>"><button type="button" class="btn btn-default" ><?php echo trans('dashboard.not_show_again');; ?></button></a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo trans('dashboard.close');; ?></button>
+                            <a href="<?php echo URL::Route('AdminSettingInstallation'); ?>"><button type="button" class="btn btn-primary"><?php echo trans('dashboard.change_now');; ?></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    }
+}
+?>
+
+
+<!--   summary start -->
+<div class="row">
+    <?php if(in_array("15", $array)){?>
+    <div class="col-lg-12 col-xs-6">
+        <div class="small-box bg-aqua">
+            <div class="box-header">
+                <div class="inner">
+                    <h2 style="padding-left:1em; padding-top:1em; padding-bottom:1em">
+                        <?php echo trans('adminController.hi_user'); ?>,
+                        <br>
+                        <?php echo trans('adminController.use_menu_system'); ?>
+
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } else {?>
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>
+                    <?= $completed_rides + $cancelled_rides ?>
+                </h3>
+                <p>
+                     <?php echo trans('dashboard.total_trip_conf');; ?>
+
+                    
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'total_trip')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.total_trip'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>
+                    <?= $completed_rides ?>
+                </h3>
+                <p>
+                    <?php echo trans('dashboard.completed_rides');; ?> 
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'completed_trip')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.completed_trip'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>
+                    <?= $cancelled_rides ?>
+                </h3>
+                <p>
+                    <?php echo trans('dashboard.cancelled_rides');; ?>
+
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'cancelled_trip')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.cancelled_trip'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-4 col-xs-6" >
+        <!-- small box -->
+        <div class="small-box bg-purple">
+            <div class="inner">
+                <h3>
+                    <?= $currency_sel ?> <?= sprintf2(($credit_payment + $card_payment + $cash_payment + $promo_payment), 2) ?>
+                </h3>
+                <p>
+                    <?php echo trans('dashboard.total_pay');; ?>
+
+                    
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'total_payment')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.total_payment'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div><!-- ./col --> 
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>
+                    <?= $currency_sel ?> <?= sprintf2($card_payment, 2) ?>
+                </h3>
+                <p>
+                    <?php echo trans('dashboard.card_pay');; ?>
+
+                    
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'card_payment')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.card_payment'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div><!-- ./col -->
+
+    <?php if(Settings::getPaymentCard() == 1): ?>
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-maroon">
+                <div class="inner">
+                    <h3>
+                        <?= $currency_sel ?> <?= sprintf2($credit_payment, 2) ?>
+                    </h3>
+                    <p>
+                        <?php echo trans('dashboard.referral_pay');; ?>
+
+                        
+                    </p>
+                </div>
+                <div class="icon">
+                    <?php /* $icon = Keywords::where('keyword', 'credit_payment')->first(); */ ?>
+                    <i class="fa"><?php
+                        /* $show = Icons::find($icon->alias); */
+                        $show = Icons::find(Config::get('app.generic_keywords.credit_payment'));
+                        echo ($show ? $show->icon_code : null);
+                        ?></i>
+                </div>
+
+            </div>
+        </div><!-- ./col -->
+    <?php endif; ?>
+
+    <?php if(Settings::getPaymentMoney() == 1): ?>{
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>
+                        <?= $currency_sel ?> <?= sprintf2($cash_payment, 2) ?>
+                    </h3>
+                    <p>
+                        <?php echo trans('dashboard.cash_pay');; ?>
+
+                        
+                    </p>
+                </div>
+                <div class="icon">
+                    <?php /* $icon = Keywords::where('keyword', 'total_trip')->first(); */ ?>
+                    <i class="fa"><?php
+                        /* $show = Icons::find($icon->alias); */
+                        $show = Icons::find(Config::get('app.generic_keywords.cash_payment'));
+                        echo ($show ? $show->icon_code : null);
+                        ?></i>
+                </div>
+
+            </div>
+        </div><!-- ./col -->
+    <?php endif; ?>
+
+
+    <div class="col-lg-4 col-xs-6" style="display: none;" >
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>
+                    <?= $currency_sel ?> <?= sprintf2($promo_payment, 2) ?>
+                </h3>
+                <p>
+                    <?php echo trans('dashboard.promo_pay');; ?>
+
+                    
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'completed_trip')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.promotional_payment'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>
+                    <?= $scheduled_rides ?>
+                </h3>
+                <p>
+                    <?php echo trans('dashboard.Schedules_Total');; ?>
+
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'completed_trip')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.schedules_icon'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div><!-- ./col -->
+    <?php } ?>
+</div>
+
+
+
+<!--  Summary end -->
+
+
+
+<!-- filter start -->
+
+<div class="box box-danger">
+    <div class="box-header">
+        <h3 class="box-title"><?php echo trans('dashboard.filter');; ?></h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+
+            <form role="form" method="get" action="<?php echo URL::Route('AdminReport'); ?>">
+
+                <!-- filtro de id da solicitação -->
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <input type="text" class="form-control" style="oveerflow:hidden;" id="request_id" name="request_id" value="<?php echo Input::get('request_id'); ?>" placeholder="<?php echo trans('dashboard.request_id');; ?>">
+                    <br>
+                </div>
+
+                <!-- filtro de data de inicio do intervalo --> 
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <input type="text" class="form-control" style="oveerflow:hidden;" id="start-date" name="start_date" value="<?php echo Input::get('start_date'); ?>" placeholder="<?php echo trans('dashboard.start_date');; ?>">
+                    <br>
+                </div>
+
+                <!-- filtro de data de fim do invervalo -->
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <input type="text" class="form-control" style="overflow:hidden;" id="end-date" name="end_date" placeholder="<?php echo trans('dashboard.end_date');; ?>"  value="<?php echo Input::get('end_date'); ?>">
+                    <br>
+                </div>
+
+                <!-- filtro de status da corrida -->
+                <div class="col-md-4 col-sm-4 col-lg-4">
+
+                    <select name="status"  class="form-control">
+                        <option value="0"> <?php echo trans('dashboard.status');; ?></option>
+                        <option value="1" <?php echo Input::get('status') == 1 ? "selected" : "" ?> ><?php echo trans('dashboard.completed');; ?></option>
+                        <option value="2" <?php echo Input::get('status') == 2 ? "selected" : "" ?>><?php echo trans('dashboard.cancelled');; ?></option>
+                    </select>
+                    <br>
+                </div>
+
+
+                <!-- filtro de usuario -->
+                <div class="col-md-4 col-sm-4 col-lg-4">
+
+                    <select id="user" name="user_id[]" style="overflow:hidden;" class="form-control" multiple="multiple">
+                        <?php foreach ($users as $user) { ?>
+                            <option value="<?= $user->id ?>"
+                              <?php 
+                                    if(Input::has('user_id'))
+                                        echo in_array($user->id, Input::get('user_id')) ? "selected" : "" 
+                                ?>
+                                >
+                                <?= $user->first_name; ?>
+                                <?= $user->last_name ?>
+                                    
+                            </option>
+                        <?php } ?>
+                    </select>
+                    <br>
+                </div>
+
+
+                <!-- filtro de prestador -->
+                <div class="col-md-4 col-sm-4 col-lg-4">
+
+                    <select id="provider" name="provider_id[]" style="overflow:hidden;" class="form-control" multiple="multiple">
+                        <?php foreach ($providers as $provider) { ?>
+                            <option value="<?= $provider->id ?>" 
+                                <?php 
+                                    if(Input::has('provider_id'))
+                                        echo in_array($provider->id, Input::get('provider_id')) ? "selected" : "" 
+                                ?>
+                                >
+                                <?= $provider->first_name; ?>
+                                <?= $provider->last_name ?>
+                                
+                            </option>
+                        <?php } ?>
+                    </select>
+                    <br>
+                </div>
+
+                <!-- filtro de status de pagamento -->
+
+                <div class="col-md-12 col-sm-12 col-lg-12">
+                    <select name="pay_status"  class="form-control">
+                        <option value="0"> <?php echo trans('dashboard.pay_status');; ?></option> 
+                        <option value="1" <?php echo Input::get('pay_status') == 1 ? "selected" : "" ?> ><?php echo trans('dashboard.completed');; ?></option>
+                        <option value="2" <?php echo Input::get('pay_status') == 2 ? "selected" : "" ?> ><?php echo trans('dashboard.request_cancelled');; ?></option>
+                        <option value="3" <?php echo Input::get('pay_status') == 3 ? "selected" : "" ?> ><?php echo trans('dashboard.pending_cancel_fee');; ?></option>
+                        <option value="4" <?php echo Input::get('pay_status') == 4 ? "selected" : "" ?>><?php echo trans('dashboard.pending');; ?></option>
+                    </select>
+                    <br>
+                </div>
+
+                <!-- filtro de metodo de pagamento -->       
+                <?php if(Settings::countPaymentMethods() > 1): ?>         
+                    <div class="col-md-12 col-sm-12 col-lg-12">           
+
+                        <?php echo trans('setting.payment_methods'); ?>:
+
+                        <?php if(Settings::getPaymentCard() == 1): ?>
+                            <input class="form-control icheckbox_minimal" style="overflow:hidden;" name="payment_card"  id="payment_card" type="checkbox" value="1" <?php echo Input::get('payment_card') == 1 ? "checked" : "" ?>>
+                            <label for="payment_card"><?php echo trans('setting.card');; ?></label>
+                        <?php endif; ?>
+                        
+                        <?php if(Settings::getPaymentMoney() == 1): ?>
+                        <input class="form-control icheckbox_minimal" style="overflow:hidden;" name="payment_money" id="payment_money" type="checkbox" value="1" <?php echo Input::get('payment_money') == 1 ? "checked" : "" ?>>                    
+                        <label for="payment_money"><?php echo trans('setting.money');; ?></label>
+                        <?php endif; ?>
+                        
+                        <?php if(Settings::getPaymentVoucher() == 1): ?>
+                        <input class="form-control icheckbox_minimal"  style="overflow:hidden;" name="payment_voucher" id="payment_voucher" type="checkbox" value="1" <?php echo Input::get('payment_voucher') == 1 ? "checked" : "" ?>>
+                        <label for="payment_voucher"><?php echo trans('setting.voucher');; ?></label>
+                        <br>
+                        <?php endif; ?>
+                        
+                    </div>
+                <?php endif; ?>
+
+        </div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+        <button type="submit" name="submit" class="btn btn-primary" value="Filter_Data"><?php echo trans('dashboard.filter');; ?></button>
+        <button type="submit" name="submit" class="btn btn-primary" value="Download_Report"><?php echo trans('dashboard.down_report');; ?></button>
+    </div>
+
+</form>
+
+</div>
+
+<!-- filter end-->
+
+
+<div class="box box-info tbl-box">
+    <div align="left" id="paglink"><?php echo $requests->appends(array('start_date' => Session::get('start_date'), 'end_date' => Session::get('end_date'), 'status' => Session::get('status'), 'user_id' => Session::get('user_id'), 'provider_id' => Session::get('provider_id'), 'pay_status' => Session::get('pay_status'), 'payment_card' => Session::get('payment_card'), 'payment_money' => Session::get('payment_money'), 'payment_voucher' => Session::get('payment_voucher'), 'submit' => Session::get('submit')))->links(); ?>
+    </div>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <!-- id da solicitacao -->
+                <th><?php echo trans('dashboard.id_conf');; ?></th>
+
+                <!-- nome do usuario -->
+                <th><?php echo trans('dashboard.name_conf');; ?> <?php echo trans('customize.User');; ?></th>
+
+                <!--prestador de servico -->
+                <th><?php echo trans('customize.Provider');; ?></th>
+
+                <!-- data -->
+                <th><?php echo trans('dashboard.date');; ?></th>
+
+                <!-- hora -->
+                <th><?php echo trans('dashboard.time');; ?></th>
+
+
+                <!-- metodo de pagamento -->
+                <th><?php echo trans('dashboard.payment_method');; ?></th>
+
+                <!-- status da solicitacao -->
+                <th><?php echo trans('dashboard.status');; ?></th>
+
+                <!-- status do pagamento -->
+                <th><?php echo trans('dashboard.pay_status');; ?></th>
+
+                <!-- valor bruto -->
+                <th><?php echo trans('dashboard.gross_value');; ?></th>
+
+                <!-- desconto promocional -->
+                <th><?php echo trans('dashboard.promo_discount');; ?></th>
+
+                <!-- taxas -->
+                <th><?php echo trans('dashboard.taxes');; ?></th>
+
+                <!-- valor do prestador -->
+                <th><?php echo trans('dashboard.provider_value');; ?></th>
+
+                <!-- valor da empresa -->
+                <th><?php echo trans('dashboard.company_value');; ?></th>
+            </tr>
+
+            <?php
+
+            //somatorios do rodape da tabela
+            $gross_value_sum = 0;
+            $promo_discount_sum = 0;
+            $taxes_sum = 0;
+            $provider_value_sum = 0;
+            $company_value_sum = 0;
+
+            foreach ($requests as $request) { 
+
+                $gross_value_sum += $request->total;
+                $promo_discount_sum += $request->ledger_payment + $request->promo_payment;
+                $taxes_sum += $request->payment_platform_rate;
+                $provider_value_sum += $request->provider_commission;
+                $company_value_sum += $request->total - $request->ledger_payment - $request->promo_payment - $request->provider_commission - $request->payment_platform_rate;
+            ?>
+                <tr>
+                    <!-- id da solicitacao -->
+                    <td><?= $request->id ?></td>
+
+                    <!-- nome do usuario -->
+                    <td><?php echo $request->user_first_name . " " . $request->user_last_name; ?> </td>
+
+                    <!-- prestador de servico -->
+                    <td>
+                        <?php
+                        if ($request->confirmed_provider) {
+                            echo $request->provider_first_name . " " . $request->provider_last_name;
+                        } else {
+                            echo trans('dashboard.unassigned');
+                        }
+                        ?>
+                    </td>
+                    <!-- data -->
+                    <td><?php echo date("d/m/Y", strtotime($request->date)); ?></td>
+                    
+                    <!-- hora -->
+                    <td><?php echo date("H:i", strtotime($request->date)); ?></td>
+
+                    <!-- metodo de pagamento -->
+                    <td>
+                        <?php 
+                        if($request->payment_mode == RequestCharging::PAYMENT_MODE_CARD){
+                            echo "<span class='badge bg-orange'>". trans('dashboard.card')."</span>";
+                        }
+                        else if($request->payment_mode == RequestCharging::PAYMENT_MODE_MONEY){
+                            echo "<span class='badge bg-blue'>". trans('dashboard.money')."</span>";
+                        }
+                        else{
+                            echo "<span class='badge bg-purple'>". trans('dashboard.voucher')."</span>";
+                        }
+                        ?>                        
+                    </td>
+
+                    <!-- status da solicitacao -->
+                    <td>
+                        <?php
+                        if ($request->is_cancelled == 1) {
+                            echo "<span class='badge bg-red'>" . trans('dashboard.cancelled') . "</span>";
+                        } elseif ($request->is_completed == 1) {
+                            echo "<span class='badge bg-green'>" . trans('dashboard.completed') . "</span>";
+                        } elseif ($request->is_started == 1) {
+                            echo "<span class='badge bg-yellow'>" . trans('dashboard.started') . "</span>";
+                        } elseif ($request->is_provider_arrived == 1) {
+                            echo "<span class='badge bg-yellow'>" . Config::get('app.generic_keywords.Provider') . " " . trans('dashboard.started') . "</span>";
+                        } elseif ($request->is_provider_started == 1) {
+                            echo "<span class='badge bg-yellow'>" . Config::get('app.generic_keywords.Provider') . " " . trans('dashboard.arrived') . "</span>";
+                        } else {
+                            
+                        }
+                        ?>
+                    </td>
+
+                    <!-- status de pagamento -->
+                    <td>
+                        <?php
+                        //corrida paga
+                        if ($request->is_paid == 1) {
+                            echo "<span class='badge bg-green'>" . trans('dashboard.completed') . "</span>";
+                        }
+
+                        else{
+                            //pagamento com dinheiro ou voucher - não possuem taxa de cancelamento
+                            if($request->payment_mode == RequestCharging::PAYMENT_MODE_MONEY || $request->payment_mode == RequestCharging::PAYMENT_MODE_VOUCHER){
+                                echo "<span class='badge bg-green'>OK</span>";
+                            }
+                            //pagamento com cartão - verificar pagamento da taxa de cancelamento
+                            else{
+                                //não foi feita tentativa de cobrança de taxa de pagamento (solicitacao cancelada antes do prazo para cobrança)
+                                if($request->request_price_transaction_id == 0){
+                                    echo "<span class='badge bg-green'> " . trans('dashboard.request_cancelled') . " </span>";
+                                }
+                                else{
+                                    //solicitacao cancelada e taxa de pagamento cobrada com sucesso
+                                    if ($request->is_cancelled == 1 && $request->is_cancel_fee_paid == 1) {
+                                        echo "<span class='badge bg-green'>" . trans('dashboard.request_cancelled') . "</span>";
+                                    }
+                                    //solicitacao cancelada mas não foi possivel cobrar taxa de cancelamento
+                                    else if($request->is_cancelled == 1 && $request->is_cancel_fee_paid == 0){
+                                        echo "<span class='badge bg-red'>" . trans('dashboard.pending_cancel_fee') . "</span>";
+                                    }
+                                    //pagamento pendente
+                                    else{
+                                        echo "<span class='badge bg-red'>" . trans('dashboard.pending') . "</span>";
+                                    }
+                                }
+                            }
+                        }
+                        ?>
+                    </td>
+
+                    <!-- valor bruto -->
+                    <td>
+                        <?= $currency_sel ?>
+                        <?= number_format($request->total,2,",",""); ?>
+                    </td>
+
+                    <!-- pagamento com desconto -->
+                    <td>
+                        <?= $currency_sel ?>
+                        <?= number_format($request->ledger_payment + $request->promo_payment,2,",",""); ?>
+                    </td>
+
+                    <!-- taxas -->
+                    <td>
+                        <?= $currency_sel ?>
+                        <?= number_format($request->payment_platform_rate,2,",",""); ?>
+                    </td>
+
+                    <!-- valor do prestador -->
+                    <td>
+                        <?= $currency_sel ?>
+                        <?= number_format($request->provider_commission,2,",",""); ?>
+                    </td>
+
+                    <!-- valor da empresa -->
+                    <td>
+                        <?= $currency_sel ?>
+                        <?= number_format($request->total - $request->ledger_payment - $request->promo_payment - $request->provider_commission - $request->payment_platform_rate,2,",",""); ?>
+                    </td>                
+                </tr>
+            <?php } ?>
+        </tbody>
+        <tfoot>
+        <label>
+            <tr style="font-weight: bold;">
+                <td colspan="8">  <?php echo trans('dashboard.total');; ?> </td>
+                <td>
+                    <?= $currency_sel ?>
+                    <?= number_format($gross_value_sum,2,",",""); ?>
+                </td>
+                <td>
+                    <?= $currency_sel ?>
+                    <?= number_format($promo_discount_sum,2,",",""); ?>
+                </td>
+                <td>
+                    <?= $currency_sel ?>
+                    <?= number_format($taxes_sum,2,",",""); ?>
+                </td>
+                <td>
+                    <?= $currency_sel ?>
+                    <?= number_format($provider_value_sum,2,",",""); ?>
+                </td>
+                <td>
+                    <?= $currency_sel ?>
+                    <?= number_format($company_value_sum,2,",",""); ?>
+                </td>
+            </tr>
+            </label> 
+        </tfoot>
+    </table>
+    <div align="left" id="paglink">
+    <?php
+        echo $requests->appends(array('start_date' => Session::get('start_date'), 'end_date' => Session::get('end_date'), 'status' => Session::get('status'), 'user_id' => Session::get('user_id'), 'provider_id' => Session::get('provider_id'), 'pay_status' => Session::get('pay_status'), 'payment_card' => Session::get('payment_card'), 'payment_money' => Session::get('payment_money'), 'payment_voucher' => Session::get('payment_voucher'), 'submit' => Session::get('submit')))->links();
+            ?>
+    </div>
+</div>
+<!--</form>-->
+</div>
+</div>
+</div>
+
+<script>
+    $(document).ready(function() { 
+        $("#provider").select2({
+            placeholder: "<?php echo trans('dashboard.providers');; ?>"
+        });
+
+        $("#user").select2({
+            placeholder: "<?php echo trans('dashboard.user');; ?>"
+        });
+
+    });
+    $(function () {
+        startDate = $("#start-date");
+        endDate = $("#end-date");
+
+        startDate.datepicker({
+            language:'pt-BR',
+            changeMonth: true,
+            numberOfMonths: 1,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                endDate.datepicker("option", "minDate", selectedDate);
+            }
+        });
+
+        endDate.datepicker({
+            language:'pt-BR',
+            changeMonth: true,
+            numberOfMonths: 1,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                startDate.datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#myModal").modal('show');
+    });
+</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,326 @@
+@extends('onwlayout.layout_html')
+@section('content')
+
+<style>
+    .total{
+        font-size: 30px;
+        font: bold;
+
+    }
+    .heading{
+        background-color: #2866A1;
+        color: #ffffff;
+    }
+    .even{
+        background-color: #f2f2f4;
+    }
+    .hr{
+        margin: 7px 0;
+        border: 0;
+        border-top: 2px solid rgb(181, 181, 181);
+        border-bottom: 0;
+    }
+    .headother{
+        font-size: 15px;
+        width: 200px;
+    }
+
+    table{border: 0px}
+
+    .table>tbody>tr>td, .table>tfoot>tr>td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 0px solid #ddd;
+    }
+    tr:nth-child(even) {background: #f2f2f4}
+    tr:nth-child(odd) {background: #FFF}
+
+</style>
+<div class="page-content">
+
+    <div class="row col-md-12">
+        <div class="col-md-6">
+            <?php
+            $unit = 1;
+            ?> 
+
+        </div>
+        <div class="col-md-6 align-right right_side">
+            <h2>{{Config::get('app.website_title')}}</h2>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-4" style="border: 5px solid #2866A1; text-align: center;">{{trans('payout.total_payout');}}<br>
+                <p class="total">   <?php ///Caixa superior
+                    $totalweek = weektotal($requests);
+                    $payment_remaining_total = payment_remaining_total($requests);
+                    $refund_remaining_total = refund_remaining_total($requests);
+
+
+                    $ridercut = $payment_remaining_total - $refund_remaining_total;
+                    echo Config::get('app.currency') . str_replace('.', '.', $totalpayout = number_format((float) $providers[0]->provider_commission , 2));
+                    ?></p>
+            </div>
+
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row col-md-12">
+        <br>
+        <div class="col-md-6">
+            <?php 
+            setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+            date_default_timezone_set('America/Sao_Paulo');
+            ?>
+            {{trans('payout.period_ending');}}: <?php echo strftime('%d de %B, %Y', strtotime(Input::get('weekend'))); ?>
+        </div>
+    </div>
+
+    <div class="row col-md-12 heading" style="margin-left: 0;">
+        <div class="col-md-6">
+
+            {{trans('payout.driver_earnings');}}
+        </div>
+    </div>
+    <table class="table">
+        <tr> <td><b>{{trans('payout.drivers');}}</b></td>
+            <td><b>{{trans('payout.total_value');}}</b></td>
+            <td><b>{{Config::get('app.website_title')}} {{trans('payout.Fee');}}</b></td>
+            <td><b>{{trans('payout.earnings');}}</b></td>
+        </tr>
+
+        <?php
+        foreach ($providers as $provider) {
+            ?><tr>
+                <!-- nome do prestador -->
+                <td>
+                    <a href="<?php echo $_SERVER['REQUEST_URI'] . '#' . $provider->id; ?>"><?php echo $provider->first_name . " " . $provider->last_name; ?></a>
+                </td>
+                <!-- valor total -->
+                <td><?php
+                    $total_payment = sprintf2(($provider->total_payment), 2);
+
+                    echo formated_value($total_payment); //linha superior
+                    ?>
+                </td>
+                <!-- taxas do admin -->
+                <td><?php
+                    $rider_fee = sprintf2(($provider->total_payment - $provider->payment_platform_taxes - $provider->promo_payment - $provider->provider_commission), 2);
+                    echo formated_value($rider_fee); //linha superior
+                    ?>
+                </td>
+                <!-- ganhos do prestador -->
+                <td><?php
+                    $payment_driver = sprintf2(($provider->provider_commission), 2);
+                    echo formated_value($payment_driver); //linha superior
+                    ?></td>
+            </tr>
+
+        <?php
+        }
+        ?>
+        <tr>
+            <td> {{trans('payout.Total');}}</td> 
+            <td><?php echo Config::get('app.currency') . formated_value($total_payment); //Linha Inferior?></td>
+            <td><?php echo Config::get('app.currency') . formated_value($rider_fee); //Linha Inferior?> </td>
+            <td><?php echo Config::get('app.currency') . formated_value($payment_driver); //Linha Inferior?> </td>
+        </tr>
+    </table>
+
+
+    <!-- valores incorretos abaixo -->
+    
+    <div class="row col-md-12">
+        <hr class="hr">
+    </div>
+
+    <div class="clear_fix"></div>
+
+    <div class="box box-info tbl-box">
+
+    </div>
+
+    <div class="box box-info tbl-box">
+
+
+        <?php
+        $drivername = '';
+        foreach ($providers as $provider) {
+
+            if ($provider->total_requests != 0) {
+                ?>
+                <br>
+
+                <!-- tabela de detalhamento de solicitacoes  --> 
+                <table class="table" id="<?= $provider->id; ?>">
+                    <tbody>
+                        <?php
+                        $date = 0;
+                        $datewisetotal = 0;
+                        $daypayout = 0;
+
+                        foreach ($requests as $request) {
+
+                            if($request->card_payment == 0){
+                                $request->card_payment = $request->total;
+                            }
+
+                            if ($provider->id == $request->confirmed_provider) {
+                                if ($date == 0) {
+                                    $date = date('Y-M-d', strtotime($request->date));
+                                    ?>
+                                    <?php
+                                }
+                                if ($date > date('Y-m-d', strtotime($request->date))) {
+                                    $date = date('Y-m-d', strtotime($request->date));
+                                    
+                                    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+                                    date_default_timezone_set('America/Sao_Paulo');;
+
+                                    $datedis = strftime('%d de %B, %Y', strtotime($request->date));
+
+                                    $daypatyout = patyoutday($requests, $date, $provider->id);
+                                    ?>
+                                    <tr style="background-color: #ffffff;">
+
+                                        <td colspan="7" style="text-align: left"> <span><?php
+                                                if ($drivername != $request->provider_first_name . " " . $request->provider_last_name) {
+                                                    ?>
+                                                    <div class="row col-md-12">
+
+                                                        <div class="col-md-6"><?php
+                                                            echo "<b><h2> " . $request->provider_first_name . " " . $request->provider_last_name . ": " . trans('payout.Payment_Statement') . "</h2></b>";
+
+                                                            ?> 
+                                                            <br>
+                                                            <br>
+                                                            <div class="col-md-4" style="border: 5px solid #2866A1; text-align: center;">{{trans('payout.total_payout');}}<br>
+                                                                <span class="total">   <?php
+                                                                    echo Config::get('app.currency') . formated_value($provider->provider_commission);
+                                                                    ?></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 align-right right_side">
+                                                            <h2>{{Config::get('app.website_title')}}</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clear_fix"></div>
+
+                                                    <?php
+                                                } 
+
+                                                else {
+                                                    echo "<hr class='hr'>";
+                                                    echo '<span class="headother"><b>' . strtoupper($datedis) . '</b></span>';
+
+                                                    echo '<span class="align right_side"><b>' . Config::get('app.currency') . formated_value($daypatyout) . '<b></span>';
+                                                    // echo "<br>";
+                                                }
+                                                ?></td>
+                                    </tr>
+                                    <?php
+                                    if ($drivername != $request->provider_first_name . " " . $request->provider_last_name) {
+                                        ?>
+                                        <tr>
+                                            <th style="text-align: left">{{trans('payout.date_time');}}</th>
+                                            <th style="text-align: left">{{trans('payout.trip_id');}}</th>
+                                            <th style="text-align: left">{{trans('payout.type');}}</th>
+
+                                            <th style="text-align: left">{{trans('payout.payment_type');}}</th>
+                                            <th style="text-align: right">{{trans('payout.total_value');}}</th>
+                                            <th style="text-align: right">{{Config::get('app.website_title')}} {{trans('payout.Fee');}}</th>
+                                            <th style="text-align: right">{{trans('payout.earnings');}}</th>
+
+                                        </tr>
+
+                                        <tr><td><b>{{trans('payout.week_totals');}}</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td style="text-align: right"><?php echo "<b>" . Config::get('app.currency') . formated_value($provider->total_payment) . "</b>"; ?></td>
+                                            <td style="text-align: right"><?php echo "<b>(" . Config::get('app.currency') . formated_value($provider->total_payment - $provider->payment_platform_taxes - $provider->promo_payment - $provider->provider_commission) . ")</b>" ?></td>
+                                            <td style="text-align: right"><?php echo "<b>" . Config::get('app.currency') . formated_value($provider->provider_commission) . "</b>"; ?></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" style="background-color: #ffffff;">
+                                                <hr class="hr">
+                                            </td></tr>
+                                        <tr><td colspan="7" style="text-align: left;background-color: #ffffff;">
+                                                <?php
+
+
+                                                echo '<span class="headother"><b>' . strtoupper($datedis) . '</b></span>';
+
+                                                echo '<span class="align right_side"><b>' . Config::get('app.currency') . formated_value($daypatyout) . '</b></span>';
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        $drivername = $request->provider_first_name . " " . $request->provider_last_name;
+                                    }
+                                    ?>
+                                    <?php
+                                    $daypayout = 0;
+                                    $daypayout +=$request->card_payment;
+                                } else {
+                                    $daypayout +=$request->card_payment;
+                                }
+                                ?>
+
+
+                                <tr>
+                                    <?php  
+                                    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+                                    date_default_timezone_set('America/Sao_Paulo');
+                                    ?>
+                                    <td style="text-align: left"><?php echo strftime('%d de %B, %Y', strtotime($request->request_start_time)); ?> </td>
+                                    <td style="text-align: left"><?= $request->id ?></td>
+                                    <td style="text-align: left"><?php
+                                        $provider_type = DB::table('provider_type')->where('id', '=', $request->type)->first();
+                                        ?></td>
+
+
+
+
+
+                                    <td style="text-align: left"><?php
+                                        if ($request->cash_or_card) {
+                                            echo trans('payout.cash');
+                                        } else {
+                                            echo trans('payout.credit_card');
+                                        }
+                                        ?></td>
+                                    <td style="text-align: right">
+                                        <?php echo formated_value($request->total); ?>
+                                    </td>
+                                    <td style="text-align: right">
+                                        <?php echo '(' . formated_value($request->total - $request->provider_commission) . ')'; ?>
+                                    </td>
+                                    <td style="text-align: right">
+                                        <?php echo formated_value($request->provider_commission); ?>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            <?php
+                        }
+                        ?>  </tbody>
+                </table>
+                <?php
+            }
+        }
+        ?>
+    </div>
+    
+</div>
+
+
+@stop

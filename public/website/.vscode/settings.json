@@ -1,0 +1,7 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    // Controls if the editor should automatically close brackets after opening them
+    "editor.autoClosingTags": true,
+    "editor.renderWhitespace": true,
+    "editor.renderIndentGuides": true
+}

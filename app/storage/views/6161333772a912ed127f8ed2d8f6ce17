@@ -1,0 +1,354 @@
+<?php $__env->startSection('content'); ?>
+
+<?php 
+$adminPermission = Session::get('adminPermission');
+$array_permissions = array() ;
+foreach ($adminPermission as $permission) {
+    $array_permissions[] = $permission->permission_id;
+}
+?>
+<!--<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <a id="addpro" href="<?php echo URL::Route('AdminProviderAdd'); ?>"><button class="btn btn-flat btn-block btn-info" type="button">Add Provider</button></a>
+        <br/>
+    </div>
+</div>-->
+<div class="col-md-12 col-sm-12">
+    <div class="box box-danger">
+        <form method="get" action="<?php echo URL::Route('/admin/sortpv'); ?>">
+            <div class="box-header">
+                <h3 class="box-title"><?php echo trans('provider.filter');; ?></h3>
+            </div>
+            <div class="box-body row">
+                <div class="col-md-6 col-sm-6 col-lg-2">
+                    <?php $id = Input::get('id') ?>
+                    <input  type="number" min="0" class="form-control" id="id" name="id" value="<?php echo Input::get('id'); ?>" placeholder="Id" >
+                    
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-lg-4">
+                    <?php $name = Input::get('name') ?>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo Input::get('name'); ?>" placeholder="<?php echo trans('providerController.name');; ?>" >
+                   
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-lg-6">
+                    <?php $email = Input::get('email') ?>
+                    <input type="text" class="form-control" id="email" name="email" value="<?php echo Input::get('email'); ?>" placeholder="Email" >
+                   
+                </div>
+            </div>
+
+            <div class="box-body row">
+                <div class="col-md-6 col-sm-6 col-lg-6">
+                    <?php $state = Input::get('state') ?>
+                    <input type="text" class="form-control" id="state" name="state" value="<?php echo Input::get('state'); ?>" placeholder="<?php echo trans('providerController.state');; ?>" >
+                   
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-lg-6">
+                    <?php $city = Input::get('city') ?>
+                    <input type="text" class="form-control" id="city" name="city" value="<?php echo Input::get('city'); ?>" placeholder="<?php echo trans('providerController.city');; ?>" >
+                   
+                </div>    
+            </div>
+
+            <div class="box-body row">
+
+                <div class="col-md-12 col-sm-3 col-lg-3">
+                    <?php $status = Input::get('status') ?>
+                    <select name="status"  class="form-control" >
+                        <option value="0"> Status</option>
+                        <option value="APROVADO" <?php echo Input::get('status') == "APROVADO" ? "selected" : "" ?> ><?php echo trans('adminController.approved');; ?></option>
+                        <option value="REJEITADO" <?php echo Input::get('status') == "REJEITADO" ? "selected" : "" ?>><?php echo trans('adminController.decline');; ?></option>
+                        <option value="EM_ANALISE" <?php echo Input::get('status') == "EM_ANALISE" ? "selected" : "" ?> ><?php echo trans('adminController.analyse');; ?></option>
+                        <option value="SUSPENSO" <?php echo Input::get('status') == "SUSPENSO" ? "selected" : "" ?>><?php echo trans('adminController.suspend');; ?></option>
+                        <option value="PENDENTE" <?php echo Input::get('status') == "PENDENTE" ? "selected" : "" ?>><?php echo trans('adminController.pendent');; ?></option>
+                        <option value="INATIVO" <?php echo Input::get('status') == "INATIVO" ? "selected" : "" ?>><?php echo trans('adminController.inactive');; ?></option>
+                    </select>
+                
+                </div>
+
+                 <div class="col-md-6 col-sm-3 col-lg-3">
+                    <?php $brand = Input::get('brand') ?>
+                    <input type="text" class="form-control" id="brand" name="brand" value="<?php echo Input::get('brand'); ?>" placeholder="<?php echo trans('providerController.brand_number');; ?>" > 
+                </div>
+            </div>
+            
+            <div class="box-footer" align="right">
+                <button type="submit" name="btnsearch" class="btn btn-flat btn-block btn-success " value="Filter_Data"><?php echo trans('provider.search');; ?></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<?php 
+
+    if( $order==0){
+        $order = 1;
+    } else if( $order==1){
+        $order = 0;
+    } 
+
+;?>
+
+<div class="col-md-12 col-sm-12">
+    <?php if (Session::get('che')) { ?>
+        <a id="providers" href="<?php echo URL::Route('AdminProviders'); ?>"><button class="col-md-12 col-sm-12 btn btn-warning" type="button"><?php echo trans('provider.all_provider');; ?></button></a><br/>
+    <?php } else { ?>
+        <a id="currently" href="<?php echo URL::Route('AdminProviderCurrent'); ?>"><button class="col-md-12 col-sm-12 btn btn-warning"  type="button"><?php echo trans('provider.on_duty_now');; ?></button></a><br/>
+    <?php } ?>
+    <br><br>
+</div>
+<?php 
+    if(sizeof($providers) != 0){
+        ?>
+        <div class="box box-info tbl-box ">
+        <?php
+    }else{
+        
+        ?>
+<div class="col-md-12 col-sm-12">
+
+        <?php
+    }
+?>
+
+    <div align="left" id="paglink"><?php echo $providers->appends(array(
+    'id' => Session::get('id'),
+    'name' => Session::get('name'), 
+    'email' => Session::get('email'),
+    'city' => Session::get('city'),
+    'status' => Session::get('status'),  
+    'type' => Session::get('type'), 
+    'order' => Session::get('order'), 
+    'state' => Session::get('state'), 
+    'brand' => Session::get('brand'), 
+
+    ))->links(); ?></div>
+    <table class="table table-bordered">
+        <tbody><tr>
+                <th>
+
+                    <div  title="<?php echo trans('provider.id'); ?>" >
+                        <a id="idlabel"  href="<?php echo asset_url().'/admin/sortpv?name='.$name.'&brand='.$brand.'&id='.$id.'&status='.$status.'&state='.$state.'&city='.$city.'&email='.$email.'&order='.$order.'&type=id' ?>"> <?php echo trans('map.id');; ?> 
+
+                            <?php 
+                                if($type == 'id'){
+                                    if($order == 0){ ?>
+                                        <i align="right" name="order" class="fa fa-arrow-up" ></i>
+                                    <?php }else if($order == 1){ ?>
+                                        <i align="right" name="order" class="fa fa-arrow-down"></i>
+                                    <?php }
+                                }   
+                            ?>
+                        </a>
+                    </div>
+
+                </th>
+                <th>
+                    <div  title="<?php echo trans('provider.name'); ?>" >
+                        <a id="namelabel" href="<?php echo asset_url().'/admin/sortpv?name='.$name.'&brand='.$brand.'&id='.$id.'&status='.$status.'&state='.$state.'&city='.$city.'&email='.$email.'&order='.$order.'&type=first_name' ?>"> <?php echo trans('provider.name_grid');; ?> 
+
+                            <?php 
+                                if($type == 'first_name'){
+                                    if($order == 0){ ?>
+                                        <i align="right" name="order" class="fa fa-arrow-up" ></i>
+                                    <?php }else if($order == 1){ ?>
+                                        <i align="right" name="order" class="fa fa-arrow-down"></i>
+                                    <?php }
+                                }   
+                            ?>
+                        </a>
+                    </div>
+
+                </th>
+                <th>
+
+                    <div  title="<?php echo trans('provider.email'); ?>" >
+                        <a id="emaillabel"  href="<?php echo asset_url().'/admin/sortpv?name='.$name.'&brand='.$brand.'&id='.$id.'&status='.$status.'&state='.$state.'&city='.$city.'&email='.$email.'&order='.$order.'&type=email' ?>"> <?php echo trans('provider.mail_grid');; ?> 
+
+                            <?php 
+                                if($type == 'email'){
+                                    if($order == 0){ ?>
+                                        <i align="right" name="order" class="fa fa-arrow-up" ></i>
+                                    <?php }else if($order == 1){ ?>
+                                        <i align="right" name="order" class="fa fa-arrow-down"></i>
+                                    <?php }
+                                }   
+                            ?>
+                        </a>
+                    </div>
+                </th>
+                <th><?php echo trans('provider.phone_grid');; ?></th>
+                <th><?php echo trans('provider.picture_grid');; ?></th>
+                <th><?php echo trans('provider.location');; ?></th>
+                <th><?php echo trans('provider.total_request_grid');; ?></th>
+                <th><?php echo trans('provider.accept_rate_grid');; ?></th>
+                <th><?php echo trans('provider.status_grid');; ?></th>
+                <th><?php echo trans('provider.action_grid');; ?></th>
+            </tr>
+            <?php foreach($providers as $provider): ?>
+                <tr>
+                    <td><?= $provider->id ?>  
+
+
+
+                    </td>
+                    <td><?php echo $provider->first_name . " " . $provider->last_name; ?> </td>
+                    <td><?= $provider->email ?></td>
+                    <td><?= $provider->phone ?></td>
+                    <td><a href="<?php echo $provider->picture; ?> target="_blank" onclick="window.open('<?php echo $provider->picture; ?>', 'popup', 'height=500px, width=400px'); return false;""><?php echo trans('provider.view_photo_grid');; ?></a></td>
+                    <td><?php echo $provider->getLocation(); ?></td>
+                    <td><?= $provider->total_requests ?></td>
+                    <td><?php
+                        if ($provider->total_requests != 0) {
+                            echo round(($provider->accepted_requests / $provider->total_requests) * 100, 2);
+                        } else {
+                            
+                        }
+                        ?> %</td>
+                    <td>
+                        <?php if($provider->status_name && strcmp($provider->status_name, "APROVADO") == 0 ): ?>
+                            <span class='label label-success'><?php echo trans('provider.approved_grid');; ?></span>
+                        <?php elseif($provider->status_name && strcmp($provider->status_name, "REJEITADO") == 0): ?>
+                            <span class='label label-danger'><?php echo trans('provider.rejected_grid');; ?></span>
+                        <?php elseif($provider->status_name && strcmp($provider->status_name, "EM_ANALISE") == 0): ?>
+                            <span class='label label-warning'><?php echo trans('provider.analysis_grid');; ?></span>
+                        <?php elseif($provider->status_name && strcmp($provider->status_name, "PENDENTE") == 0): ?>
+                            <span class='label label-primary'><?php echo trans('provider.pending_grid');; ?></span>
+                        <?php elseif($provider->status_name && strcmp($provider->status_name, "INATIVO") == 0): ?>
+                            <span class='label label-danger'><?php echo trans('provider.inactive_grid');; ?></span>
+                        <?php else: ?>
+                            <span class='label label-default'><?php echo trans('provider.suspended_grid');; ?></span>
+                        <?php endif; ?>
+
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-flat btn-info dropdown-toggle" type="button" id="dropdownMenu1" name="action" data-toggle="dropdown">
+                                <?php echo trans('provider.action_grid');; ?>
+
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+                                <!-- EDITAR -->
+                                <?php if(in_array("201", $array_permissions)): ?>                                     
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="<?php echo URL::Route('AdminProviderEdit', $provider->id); ?>"><?php echo trans('provider.edit_detail_grid');; ?></a>
+                                    </li>
+                                <?php endif; ?>
+
+                                <!-- HISTORICO  -->
+                                <?php if(in_array("208", $array_permissions)): ?>
+                                    <li role="presentation">
+                                        <a role="menuitem" id="history" tabindex="-1" href="<?php echo URL::Route('AdminProviderHistory', $provider->id); ?>"><?php echo trans('provider.view_history_grid');; ?></a>
+                                    </li>
+                                <?php endif; ?>
+
+                                <!-- ALTERAÇÔES DE STATUS -->
+                                <?php if($provider->status_name != "APROVADO"): ?>
+                                    <?php if(in_array("209", $array_permissions)): ?>
+                                        <li role="presentation">
+                                            <a role="menuitem" id="approve" tabindex="-1" href="<?php echo URL::Route('AdminProviderChangeStatus', array('APROVADO', $provider->id)); ?>" onclick="return confirm('<?php echo trans('provider.approve_message') . ' ' . $provider->first_name . ' ' . $provider->last_name . '?';; ?>')"><?php echo trans('provider.approve_grid');; ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <?php if($provider->status_name != "REJEITADO"): ?>
+                                    <?php if(in_array("203", $array_permissions)): ?>
+                                        <li role="presentation">
+                                            <a role="menuitem" id="decline" tabindex="-1" href="<?php echo URL::Route('AdminProviderChangeStatus', array('REJEITADO', $provider->id)); ?>" onclick="return confirm('<?php echo trans('provider.decline_message') . ' ' . $provider->first_name . ' ' . $provider->last_name . '?';; ?>')"><?php echo trans('provider.decline_grid');; ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <?php if($provider->status_name != "EM_ANALISE"): ?>
+                                    <?php if(in_array("204", $array_permissions)): ?>
+                                        <li role="presentation">
+                                            <a role="menuitem" id="analyse" tabindex="-1" href="<?php echo URL::Route('AdminProviderChangeStatus', array('EM_ANALISE', $provider->id)); ?>" onclick="return confirm('<?php echo trans('provider.analyse_message') . ' ' . $provider->first_name . ' ' . $provider->last_name . '?';; ?>')"><?php echo trans('provider.analyse_grid');; ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <?php if($provider->status_name != "SUSPENSO"): ?>
+                                    <?php if(in_array("205", $array_permissions)): ?>
+                                        <li role="presentation">
+                                            <a role="menuitem" id="suspend" tabindex="-1" href="<?php echo URL::Route('AdminProviderChangeStatus', array('SUSPENSO', $provider->id)); ?>" onclick="return confirm('<?php echo trans('provider.suspend_message') . ' ' . $provider->first_name . ' ' . $provider->last_name . '?';; ?>')"><?php echo trans('provider.suspend_grid');; ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <?php if($provider->status_name != "PENDENTE"): ?>
+                                    <?php if(in_array("210", $array_permissions)): ?>
+                                        <li role="presentation">
+                                            <a role="menuitem" id="pendent" tabindex="-1" href="<?php echo URL::Route('AdminProviderChangeStatus', array('PENDENTE', $provider->id)); ?>" onclick="return confirm('<?php echo trans('provider.pendent_message') . ' ' . $provider->first_name . ' ' . $provider->last_name . '?';; ?>')"><?php echo trans('provider.set_pending_grid');; ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <?php if($provider->status_name != "INATIVO"): ?>
+                                    <?php if(in_array("211", $array_permissions)): ?>
+                                        <li role="presentation">
+                                            <a role="menuitem" id="deactivate" tabindex="-1" href="<?php echo URL::Route('AdminProviderChangeStatus', array('INATIVO', $provider->id)); ?>" onclick="return confirm('<?php echo trans('provider.inactive_message') . ' ' . $provider->first_name . ' ' . $provider->last_name . '?';; ?>')"><?php echo trans('provider.deactivate_grid');; ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <!-- DELETAR -->
+                                <?php if(in_array("206", $array_permissions)): ?>
+                                    <li role="presentation">
+                                        <a role="menuitem" id="delete" tabindex="-1" href="<?php echo URL::Route('AdminProviderDelete', $provider->id); ?>" onclick="return confirm('<?php echo trans('provider.delete_message') . ' ' . $provider->first_name . ' ' . $provider->last_name . '?';; ?>')"><?php echo trans('provider.delete_grid');; ?></a>
+                                    </li>
+                                <?php endif; ?>
+
+
+                                <?php if(in_array("202", $array_permissions)) { ?>
+                                <?php
+                                $provider_doc = ProviderDocument::where('provider_id', $provider->id)->first();
+                                if ($provider_doc != NULL) {
+                                    ?>
+                                    <li role="presentation"><a id="view_provider_doc" role="menuitem" tabindex="-1" href="<?php echo URL::Route('AdminProviderDocuments', $provider->id); ?>"><?php echo trans('provider.view_documents_grid');; ?></a></li>
+                                <?php } else { ?>
+                                    <li role="presentation"><a id="view_provider_doc" role="menuitem" tabindex="-1" href="<?php echo URL::Route('AdminProviderDocuments', $provider->id); ?>"><span class='badge bg-red'><?php echo trans('provider.no_documents_grid');; ?></span></a></li>
+                                <?php } ?>
+                                <?php } ?>
+                                <!--<li role="presentation"><a role="menuitem" id="history" tabindex="-1" href="<?php echo web_url().'/admin/provider/documents/'.$provider->id; ?>">View Documents</a></li>-->
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+
+            <?php endforeach; ?>
+        </tbody>
+        
+
+        </table>
+        <?php 
+            if(sizeof($providers) == 0){
+                ?>
+                <label class="col-md-12 col-sm-12 col-lg-12" align="center"> <?php echo trans('user_provider_web.no_result'); ?></label>
+                <?php
+            }
+        ?>
+
+
+       
+    <div align="left" id="paglink"><?php echo $providers->appends(array(
+    'id' => Session::get('id'),
+    'name' => Session::get('name'), 
+    'email' => Session::get('email'),
+    'city' => Session::get('city'),
+    'status' => Session::get('status'),  
+    'type' => Session::get('type'), 
+    'order' => Session::get('order'), 
+    'state' => Session::get('state'), 
+    'brand' => Session::get('brand'), 
+
+    ))->links(); ?></div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<!-- Meta Data -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PifouApp | O Herói dos veículos desprotegidos</title>
+	<meta name="description" content="Pifou App, aplicativo para reboque, bateria, chaveiro online e troca de pneus"/>
+	<meta name="keywords" content="reboque, app, aplicativo, bateria, chaveiro, pneu, android, ios"/>
+	<meta name="author" content="Codificar"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="shortcut icon" href="/pifou/web/img/favicon.ico" type="image/x-icon">
+
+	<!-- Stlylesheet -->
+	<link href="/pifou/web/css/style.css" rel="stylesheet"/>
+	<link href="/pifou/web/css/owl.carousel.css" rel="stylesheet"/>
+	<link href="/pifou/web/css/jquery.fancybox.css" rel="stylesheet"/>
+
+	<!-- Skin Color -->
+	<link rel="stylesheet" href="/pifou/web/css/colors/blue-2.css" id="color-skins"/>
+
+</head>
+
+<body>
+
+<!-- Start Preloader -->
+<div class="preloader">
+	<!--<img src="/pifou/web/img/assets/logo.png" class="preloader-logo" alt="preloader-logo">-->
+	<div class="spinner"></div>
+</div>
+<!-- End Preloader -->
+
+<!-- Start Home -->
+<section id="home" data-stellar-background-ratio="0.6">
+	<div class="parallax-overlay"></div>
+	<div class="home-container text-center">
+		<div class="home-title liquid-slider">
+			<div>
+				<h1>
+					<small class="white hidden-xs"><img src="/pifou/web/img/assets/logo-topo.png" class="logo-topo"
+														style="top: 0!important;"/>
+					</small>
+					<!--<br><strong>Something You Love</strong>--></h1>
+				<div class="container container-separator">
+					<h3 class="hidden-xs">
+						<small class="c-branco">É madrugada, está chovendo e o carro estragou. E agora? O que fazer?
+						</small>
+					</h3>
+					<p class="lead hidden-xs">O PifouApp é a sua solução ideal. Através do nosso aplicativo, você
+						consegue
+						solicitar um prestador
+						de serviço para reboque, chaveiro, recarga de bateria e troca de pneu do seu veículo e dentro
+						de pouco tempo o
+						seu
+						problema estará resolvido.
+					</p>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 hidden-sm hidden-md hidden-lg">
+						<h3 class="btn-title">Seu veículo é desprotegido?</h3>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+						<h3 class="btn-title hidden-xs">Seu veículo é desprotegido?</h3>
+						<div class="user-btn">
+							<div class="col-xs-6 text-right">
+								<div class="home-btn">
+									<h4 class="btn-home"><a href="https://play.google.com/store/apps/details?id=com.br.pifou" class="text-center"><i
+											class="fa fa-android ico-download font40"></i><br/>Baixar</a></h4>
+								</div>
+							</div>
+							<div class="col-xs-6 text-left">
+								<div class="home-btn">
+									<h4 class="btn-home"><a href="#" class="text-center"><i
+											class="fa fa-apple ico-download font40"></i><br/>Baixar</a></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+						<div class="user-btn">
+							<h3 class="btn-title">Prestador?</h3>
+							<div class="home-btn">
+								<h4 class="btn-home"><a href="/prestador"
+														class="text-center"><i
+										class="fa fa-info ico-download font40"></i><br/>Saiba mais</a></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="home-bottom">
+		<div class="container text-center">
+			<div class="move">
+				<a href="#como-funciona" class="fa fa-chevron-down"></a>
+				<div class="dots"></div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End Home -->
+
+<!--Start Header-->
+<section id="fixed-navbar">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="nav-topbar">
+			<div class="container">
+				<span><i
+						class="fa fa-envelope"></i> sac@pifouapp.com.br</span>
+				<!-- <span><i class="fa fa-phone"></i> (31) 3333-3333</span> -->
+			</div>
+		</div>
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="/pifou/web/img/assets/logo.png" alt=""></a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="main-nav">
+				<ul class="nav navbar-nav  navbar-right">
+					<li><a href="#home">Início</a></li>
+					<li><a href="#como-funciona">Como funciona</a></li>
+					<li><a href="#depoimentos">Depoimentos</a></li>
+					<li><a href="#vantagens">Vantagens</a></li>
+					<li><a href="#aplicativo">Aplicativo</a></li>
+					<li><a href="#parceiro">Prestador</a></li>
+					<li><a href="#contato">Contato</a></li>
+
+					<!-- <li class="dropdown">
+						<span class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></span>
+						<ul class="dropdown-menu">
+							<li><a href="#get-connected">Get Connected</a></li>
+							<li><a href="#clients">Clients</a></li>
+							<li><a href="#price-list">Price List</a></li>
+							<li><a href="shortcodes.html"><span class="label label-primary">Shortcodes</span></a></li>
+							<li><a href="blog.html">Blog Home</a></li>
+							<li><a href="blog-single.html">Blog Single</a></li>
+						</ul>
+					</li> -->
+
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+</section>
+<!--End Header-->
+
+<div class="site-wrapper">
+	<!--Start About-->
+	<section id="como-funciona">
+		<div class="container content">
+
+			<div class="col-lg-12 section-title-about wow fadeInUp">
+				<h2>
+					<small>Como funciona?</small><!-- <br>Making Your Brand Shine--></h2>
+				<p class="lead">Solicitar um serviço no <span class="highlight">PifouApp</span>, é muito simples
+					<br>Basta seguir os passos abaixo e aguardar até que o prestador do serviço chegue ao local.</p>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+					<div class="about-row">
+						<div class="about-icon">
+							<i class="icon icon-screen-smartphone font50 highlight"></i>
+							<i class="icon icon-screen-smartphone back-icon"></i>
+						</div>
+						<div class="about-info">
+							<h4>Acesse o aplicativo<br>
+								<small>Selecione o serviço</small>
+							</h4>
+							<p class="about-description">Você pode escolher entre <strong>Reboque</strong>, <strong>Recarga
+								de Bateria</strong>,
+								<strong>Chaveiro</strong> e <strong>Troca de pneus</strong>.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+					<div class="about-row">
+						<div class="about-icon">
+							<i class="icon icon-map font40 highlight"></i>
+							<i class="icon icon-map back-icon"></i>
+						</div>
+						<div class="about-info">
+							<h4>Marque sua localização no mapa<br>
+								<small>Informe o local de atendimento e se necessário o local de destino.</small>
+							</h4>
+							<p class="about-description">Para serviços como de Reboque é necessário definir um local de
+								destino.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+					<div class="about-row">
+						<div class="about-icon">
+							<i class="icon icon-wallet font40 highlight"></i>
+							<i class="icon icon-wallet back-icon"></i>
+						</div>
+						<div class="about-info">
+							<h4>Saiba o valor do serviço<br>
+								<small>O aplicativo lhe mostrará o valor do serviço prestado.</small>
+							</h4>
+							<!-- <p class="about-description">Para serviços como de Reboque é necessário definir um local de destino.</p> -->
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+					<div class="about-row">
+						<div class="about-icon">
+							<i class="icon icon-clock font40 highlight"></i>
+							<i class="icon icon-clock back-icon"></i>
+						</div>
+						<div class="about-info">
+							<h4>Aguarde pelo prestador de serviço<br>
+								<small>O aplicativo lhe mostrará um tempo estimado de chegada.</small>
+							</h4>
+							<p class="about-description">O mapa também mostrará onde o prestador de serviço está.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+					<div class="about-row">
+						<div class="about-icon">
+							<i class="icon icon-check font40 highlight"></i>
+							<i class="icon icon-check back-icon"></i>
+						</div>
+						<div class="about-info">
+							<h4>Serviço concluído<br>
+								<small>Avalie o prestador do serviço</small>
+							</h4>
+							<!-- <p class="about-description">Após a conclusão do serviço você será convidado a avaliar o
+								prestador do serviço.</p> -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!--End About-->
+
+	<!-- Start Separator Testimonials -->
+	<section id="depoimentos" data-stellar-background-ratio="0.7">
+		<div class="row text-center" style="position:relative;">
+			<div class="parallax-overlay"></div>
+
+			<div class="liquid-slider" style="z-index: 3;" id="testimonials-slider">
+
+				<div class="col-lg-12 testimonials text-center">
+					<h3 class="white">
+						<small class="white">O que as pessoas</small>
+						<br>dizem sobre nós.
+					</h3>
+					<h4 class="testimonial">
+						<i class="fa fa-quote-left highlight"></i>
+						<small>
+							Meu carro parou de funcionar em uma avenida e o <span class="highlight">PifouApp</span>
+							<br/>
+							me ajudou rapidamente a chamar um reboque.
+						</small>
+						<i class="fa fa-quote-right highlight"></i>
+					</h4>
+					<p class="label label-primary">Maria do Carmo Tavares</p>
+				</div>
+
+				<div class="col-lg-12 testimonials text-center">
+					<h3 class="white">
+						<small class="white">O que as pessoas</small>
+						<br>dizem sobre nós.
+					</h3>
+					<h4 class="testimonial">
+						<i class="fa fa-quote-left highlight"></i>
+						<small>Estava viajando, parei para comer algo e deixei o farol ligado, a bateria do meu
+							carro<br/> acabou, mas com a ajuda do
+						</small>
+						<span class="highlight">PifouApp</span>
+						<small class="white"> encontrei um mecânico para recarregá-la.
+						</small>
+						<i class="fa fa-quote-right highlight"></i>
+					</h4>
+					<p class="label label-primary">Alberto Silva Camargo de Jesus</p>
+				</div>
+
+				<div class="col-lg-12 testimonials text-center">
+					<h3 class="white">
+						<small class="white">O que as pessoas</small>
+						<br>dizem sobre nós.
+					</h3>
+					<h4 class="testimonial">
+						<i class="fa fa-quote-left highlight"></i>
+						<small>Meu pneu que já era o estepe furou na BR-040.<br> Baixei o aplicativo</small>
+						<span class="highlight">PifouApp</span>
+						<small> e em menos de 10 minutos o mecânico veio me socorrer.</small>
+						<i class="fa fa-quote-right highlight"></i>
+					</h4>
+					<p class="label label-primary">Ana Caralina Teixeira Soares</p>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+	<!-- End Separator Testimonials -->
+
+	<!-- Start Services -->
+	<section id="vantagens">
+		<div class="container">
+
+			<div class="col-lg-12 section-title wow fadeIn">
+				<h2>
+					<small>Vantagens</small>
+					<br><strong>Simples, Rápido e justo.</strong></h2>
+				<p class="lead">Saiba por que escolher o <span class="highlight">PifouApp</span>.</p>
+			</div>
+
+			<div class="services-container">
+				<div class="row services-row">
+					<div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon icon-screen-smartphone  font40 highlight"></i>
+								<i class="icon icon-screen-smartphone  back-icon"></i>
+							</div>
+							<div class="service-info">
+								<h4>Simples de usar<br>
+									<small>Tudo na palma da mão.</small>
+								</h4>
+								<p class="service-description">Baixe o APP e solicite o serviço com apenas alguns
+									toques.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon icon-energy font40 highlight"></i>
+								<i class="icon icon-energy back-icon"></i>
+							</div>
+							<div class="service-info">
+								<h4>Atendimento rápido<br>
+									<small>Colaboradores em todo Brasil.</small>
+								</h4>
+								<p class="service-description">Com a nossa ampla rede de colaboradores você será
+									atendido pelo que estiver mais próximo.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon icon-credit-card font40 highlight"></i>
+								<i class="icon icon-credit-card back-icon"></i>
+							</div>
+							<div class="service-info">
+								<h4>Preço justo<br>
+									<small>O valor correto para o serviço.</small>
+								</h4>
+								<p class="service-description">O colaborador mais próximo disponível atenderá o serviço
+									e será cobrado um valor dentro de nossas políticas de preço.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.6s">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon icon-map  font40 highlight"></i>
+								<i class="icon icon-map  back-icon"></i>
+							</div>
+							<div class="service-info">
+								<h4>Sempre com você<br>
+									<small>A um toque de distância.</small>
+								</h4>
+								<p class="service-description">Onde você for estaremos sempre a um toque de distância
+									em seu celular.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon icon-lock font40 highlight"></i>
+								<i class="icon icon-lock back-icon"></i>
+							</div>
+							<div class="service-info">
+								<h4>Seguro em todas as etapas<br>
+									<small>Conhecemos cada colaborador.</small>
+								</h4>
+								<p class="service-description">Conhecemos quem vai lhe atender e o pagamento é feito
+									totalmente em ambiente seguro.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon icon-info font40 highlight"></i>
+								<i class="icon icon-info back-icon"></i>
+							</div>
+							<div class="service-info">
+								<h4>Totalmente transparente<br>
+									<small>Informações na tela do celular</small>
+								</h4>
+								<p class="service-description">O aplicativo lhe mostrará um valor e tempo estimado para
+									o serviço e após solicitar ele mostra onde o colaborador está.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- End Services -->
+
+	<!-- Start Separator Video -->
+	<section id="aplicativo" data-stellar-background-ratio="0.6">
+		<div class="container">
+			<div class="col-sm-12 section-title wow fadeIn">
+				<h2>
+					<small>Conheça o aplicativo</small>
+				</h2>
+				<p class="lead highlight">Clique nas imagens para ampliar.</p>
+			</div>
+		</div>
+		<div class="container">
+
+			<div class="slider wow fadeInDown">
+				<div>
+					<a class="fancybox" rel="group" href="/pifou/web/img/app/Splash@2x.png"><img
+							src="/pifou/web/img/app/Splash.png"/></a>
+				</div>
+				<div>
+					<a class="fancybox" rel="group" href="/pifou/web/img/app/mapa@2x.png"><img
+							src="/pifou/web/img/app/mapa.png"/></a>
+				</div>
+				<div>
+					<a class="fancybox" rel="group" href="/pifou/web/img/app/mapa2@2x.png"><img
+							src="/pifou/web/img/app/mapa2.png"/></a>
+				</div>
+				<!-- <div>
+					<a class="fancybox" rel="group" href="/pifou/web/img/app/informacoes@2x.png"><img
+							src="/pifou/web/img/app/informacoes.png"/></a>
+				</div> -->
+				<div>
+					<a class="fancybox" rel="group" href="/pifou/web/img/app/historico-detalhes@2x.png"><img
+							src="/pifou/web/img/app/historico-detalhes.png"/></a>
+				</div>
+				<div>
+					<a class="fancybox" rel="group" href="/pifou/web/img/app/Perfil@2x.png"><img
+							src="/pifou/web/img/app/Perfil.png"/></a>
+				</div>
+			</div>
+			<div class="col-sm-12 call-action-purchase text-center">
+				<h4>
+					<small>Faça o download e use quando precisar</small>
+				</h4>
+					<span class="btn-home">
+						<a href="https://play.google.com/store/apps/details?id=com.br.pifou" target="_blank" class="btn btn-primary btn-lg"><i
+								class="fa fa-android ico-download font30"></i>
+							<small><br/>Baixar APP Android<br/>(Disponível)</small>
+						</a>
+					</span>
+					<span class="btn-home">
+						<a href="#" target="_blank" class="btn btn-primary btn-lg"><i
+								class="fa fa-apple ico-download font30"></i><br/>
+							<small>Baixar APP iOS<br/>(Em Breve)</small>
+						</a>
+					</span>
+			</div>
+		</div>
+	</section>
+	<!-- End Separator Video -->
+
+	<!-- Start Fun Facts -->
+	<section id="contadores">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 fact-container wow fadeInUp" data-wow-delay="0.1s">
+					<div class="fact">
+						<span class="counter highlight">+700</span>
+						<p class="lead">Veículos rebocados</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 fact-container wow fadeInUp" data-wow-delay="0.2s">
+					<div class="fact">
+						<span class="counter highlight">+450</span>
+						<p class="lead">Baterias recarregadas</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 fact-container wow fadeInUp" data-wow-delay="0.3s">
+					<div class="fact">
+						<span class="counter highlight">+250</span>
+						<p class="lead">Serviços de chaveiro</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 fact-container wow fadeInUp" data-wow-delay="0.4s">
+					<div class="fact">
+						<span class="counter highlight">+600</span>
+						<p class="lead">Pneus trocados</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Fun Facts -->
+
+	<!-- Start Separator-Quotes -->
+	<section id="parceiro" data-stellar-background-ratio="0.6">
+		<div class="col-lg-12 section-title-price wow fadeInUp">
+			<h2>
+				<small class="white">Torne-se um prestador</small>
+				<br/><strong class="highlight">PifouApp</strong></h2>
+			<p class="lead">Garantia de recebimento e preço justo por serviço prestado.</p>
+		</div>
+		<div class="price-container">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<div class="home-btn">
+							<h4 class="btn-home"><a href="/prestador"
+													target="_blank" class="text-center">
+								<i class="icon icon-badge ico-download font40"></i><br/><br/><span class="font20">Saiba mais</span></a>
+							</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Separator-Quotes -->
+
+	<!-- Start Separator Call to Action -->
+	<section id="callAction" data-stellar-background-ratio="0.6">
+		<div class="container">
+			<div class="col-sm-12 call-action-purchase text-center">
+				<h3>
+					<small>Baixe o APP e cadastre-se.</small>
+				</h3>
+					<span class="btn-home">
+						<a href="https://play.google.com/store/apps/details?id=com.br.pifou.provider" target="_blank" class="btn btn-primary btn-lg"><i
+								class="fa fa-android ico-download font30"></i>
+							<small><br/>Baixar APP Android<br/>(Disponível)</small>
+						</a>
+					</span>
+					<span class="btn-home">
+						<a href="#" target="_blank" class="btn btn-primary btn-lg"><i
+								class="fa fa-apple ico-download font30"></i><br/>
+							<small>Baixar APP iOS<br/>(Em Breve)</small>
+						</a>
+					</span>
+			</div>
+		</div>
+	</section>
+	<!-- End Separator Call to Action -->
+
+	<!-- Start Get Connected -->
+	<section id="siga-nos" data-stellar-background-ratio="0.7">
+		<div class="row text-center" style="position:relative;">
+			<div class="parallax-overlay"></div>
+
+			<div class="container connected-row text-center">
+				<h2>
+					<small class="white">Siga-nos</small>
+				</h2>
+				<p class="lead">Esteja sempre conectado com o PifouApp</p>
+
+				<ul class="connected-icons text-center">
+
+					<li class="connected-icon wow fadeInUp" data-wow-delay="0.2s">
+						<a target="_blank" href="https:/twitter.com/PifouApp">
+								<span class="fa-stack fa-lg fa-4x">
+										<i class="fa fa-circle fa-stack-2x"></i>
+										<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+									</span>
+							<br>
+							<span class="lead">Twitter</span>
+							<br>
+							<span class="white">Siga nosso perfil</span>
+						</a>
+					</li>
+
+					<li class="connected-icon wow fadeInUp" data-wow-delay="0.1s">
+						<a target="_blank" href="https:/www.facebook.com/pifouapp/">
+								<span class="fa-stack fa-lg fa-4x">
+										<i class="fa fa-circle fa-stack-2x"></i>
+										<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+									</span>
+							<br>
+							<span class="lead">Facebook</span>
+							<br>
+							<span class="white">Curta nossa página</span>
+						</a>
+					</li>
+
+					<li class="connected-icon wow fadeInUp" data-wow-delay="0.5s">
+						<a target="_blank" href="https:/www.instagram.com/pifouapp/">
+								<span class="fa-stack fa-lg fa-4x">
+										<i class="fa fa-circle fa-stack-2x"></i>
+										<i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+									</span>
+							<br>
+							<span class="lead">Instagram</span>
+							<br>
+							<span class="white">Siga nosso perfil</span>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</section>
+	<!-- End Get Connected -->
+
+	<!-- Start Contact Form -->
+	<section id="contato">
+		<div class="container">
+			<div class="col-lg-12 section-title-price wow fadeInUp">
+				<h2>
+					<small>Entre em contato e</small>
+					<br><strong>tire suas dúvidas</strong></h2>
+				<p class="lead">Ficaremos felizes em <span class="highlight">respondê-lo.</span></p>
+			</div>
+			<div class="col-lg-12 text-center wow fadeInUp" id="contact">
+				<div id="message"></div>
+				<form method="post" action="/contact/user" name="contactform" id="contactform">
+					<fieldset>
+						<div class="col-md-6">
+							<input name="name" type="text" id="name" size="30" value="" placeholder="* Nome"/>
+							<br/>
+							<input name="email" type="text" id="email" size="30" value="" placeholder="* E-mail"/>
+							<br/>
+							<input name="phone" type="text" id="phone" size="30" minlength="14" maxlength="15" required value="" placeholder="* Telefone"/>
+						</div>
+						<div class="col-md-6">
+							<textarea name="comments" cols="40" rows="5" id="comments"
+									  placeholder="* Mensagem"></textarea>
+						</div>
+						<div class="col-md-12 text-center">
+							<input type="submit" class="submit" id="submit" value="Enviar"/>
+						</div>
+					</fieldset>
+					<div id="success"></div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- End Contact Form -->
+
+	<!-- Start Google Map -->
+	<!-- <section>
+		<div id="map"></div>
+	</section> -->
+	<!-- End Google Map -->
+
+	<!-- Start Footer -->
+	<footer id="footer">
+		<div class="col-lg-12 text-center">
+			<div class="back-to-top">
+				<i class="fa fa-angle-double-up"></i>
+			</div>
+		</div>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-md-12 footer-social">
+					<ul class="connected-icons text-center">
+						<li class="connected-icon">
+							<a target="_blank" href="https:/twitter.com/PifouApp"><i class="fa fa-twitter fa-2-5x"></i></a>
+						</li>
+						<li class="connected-icon">
+							<a target="_blank" href="https:/www.facebook.com/pifouapp/"><i
+									class="fa fa-facebook fa-2-5x"></i></a></li>
+						<li class="connected-icon">
+							<a target="_blank" href="https:/www.instagram.com/pifouapp/"><i
+									class="fa fa-instagram fa-2-5x"></i></a></li>
+					</ul>
+				</div>
+
+				<div class="footer-logo"><img src="/pifou/web/img/assets/logo-footer.png"/></div>
+
+
+				<div class="col-lg-12 footer-menu">
+					<span class="pull-left">Copyright © 2015 <a href="#" style="margin:0;">PifouApp</a>. Todos os direitos reservados. <a
+							href="http:/www.codificar.com.br/"
+							target="_blank">Desenvolvimento de Aplicativos</a> por <strong>Codificar</strong></span>
+							<span class="pull-right">
+								<a target="_blank" class="terms" href="/page/termos-de-uso-cliente">Termos de Uso - Cliente</a>
+							</span>
+					<!-- <p class="pull-right">Rua dos Goitacazes, 375, Centro - Belo Horizonte - MG</p> -->
+				</div>
+
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+</div>
+
+<!-- jQuery Plugins -->
+<!-- <script src="https:/ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+<script src="/javascript/jquery-1.11.1.js"></script>
+<script src="/javascript/jquery-validation/jquery.validate.min.js"></script>
+<script src="/javascript/jquery-validation/additional-methods.min.js"></script>
+<script src="https:/igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+<script src="/pifou/web/js/plugins/bootstrap.min.js"></script>
+<script src="/pifou/web/js/plugins/smoothscroll.js"></script>
+<script src="/pifou/web/js/plugins/jquery.liquid-slider.js"></script>
+<script src="/pifou/web/js/plugins/jquery.stellar.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/jquery.sticky.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/waypoints.min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/wow.min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/jquery.counterup.min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/moderniz.min.js"></script>
+<script src="/pifou/web/js/plugins/jquery.easing.1.3.min.js"></script>
+<script src="/pifou/web/js/plugins/jquery.touchSwipe.min.js"></script>
+<script src="/pifou/web/js/plugins/jquery.cubeportfolio.min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/jquery.flexslider-min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/jquery.mb.YTPlayer.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/jquery.backstretch.min.js"></script>
+<script src="/pifou/web/js/plugins/tweetie.js" type="text/javascript"></script>
+<script src="https:/maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/gmap3.min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/revslider.min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/scripts.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/owl.carousel.min.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/pifou/web/js/plugins/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+<script>
+	$(document).ready(function(){
+		$('#phone').mask('(00) 00000-0000');
+	});
+</script>
+
+<script>
+$("#contactform").validate({
+	rules: {
+		name: "required",
+		email: {
+			required: true,
+			email: true,
+		},
+		phone: {
+			required: true,
+			minlength: 14,
+			maxlength: 15,
+		},
+		comments: "required",
+	},
+	messages: {
+		name: "O nome é necessário.",
+		email: {
+			required: "E-mail é necessário",
+			email: "E-mail inválido",
+		},
+		phone: {
+			required: "Telefone é necessário",
+			minlength: "Telefone deve conter DDD + 8 dígitos, no mínimo.",
+			maxlength: "Telefone deve conter DDD + 9 dígitos, no máximo.",
+		},
+		comments: "A mensagem é necessária.",
+	},
+	submitHandler: function(form) {
+		// do other things for a valid form
+		$.post("/contact/user", $("#contactform").serialize()  ,  function(response) {
+			$('#success').fadeIn().html(response.text);
+			//$('#success').delay(2000).fadeOut();
+
+		});
+	  }
+});
+</script>
+
+</body>
+
+</html>

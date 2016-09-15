@@ -1,0 +1,394 @@
+@extends('layout')
+
+@section('content')
+<!--   summary start -->
+<?php 
+$adminPermission = Session::get('adminPermission');
+
+foreach ($adminPermission as $permission) {
+    $array[] = $permission->permission_id;
+}
+?>
+<div class="row">
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>
+                    <?= $currency_sel ?> <?= sprintf2(($credit_payment + $card_payment + $cash_payment), 2) ?>
+                </h3>
+                <p>
+                    {{trans('dashboard.total_pay')}}
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'total_payment')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.total_payment'));
+                    echo $show->icon_code;
+                    ?></i>
+            </div>
+
+        </div>
+
+    </div><!-- ./col -->
+
+    <div class="col-lg-4 col-xs-6">
+        <div class="small-box bg-maroon">
+            <div class="inner">
+                <h3>
+                    <?= $currency_sel ?> <?= sprintf2($credit_payment, 2) ?>
+                </h3>
+                <p>
+                    {{trans('dashboard.referral_pay');}}
+                    
+                </p>
+            </div>
+            <div class="icon">
+                <?php ?>
+                <i class="fa"><?php
+                    $show = Icons::find(Config::get('app.generic_keywords.credit_payment'));
+                    echo ($show ? $show->icon_code : null);
+                    ?></i>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        @if(Settings::getPaymentCard() == 1)
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>
+                    <?= $currency_sel ?> <?= sprintf2($card_payment, 2) ?>
+                </h3>
+                <p>
+                    {{trans('payment.with')}} <?= $payment_default ?>
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'card_payment')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.card_payment'));
+                    echo $show->icon_code;
+                    ?></i>
+            </div>
+
+        </div>
+        @endif
+    </div><!-- ./col -->
+    
+
+    
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        @if(Settings::getPaymentMoney() == 1)
+        <div class="small-box bg-blue">
+            <div class="inner">
+                <h3>
+                    <?= $currency_sel ?> <?= sprintf2($cash_payment, 2) ?>
+                </h3>
+                <p>
+                    {{trans('provider.cash_pay')}}
+                </p>
+            </div>
+            <div class="icon">
+                <?php /* $icon = Keywords::where('keyword', 'credit_payment')->first(); */ ?>
+                <i class="fa"><?php
+                    /* $show = Icons::find($icon->alias); */
+                    $show = Icons::find(Config::get('app.generic_keywords.cash_payment'));
+                    echo $show->icon_code;
+                    ?></i>
+            </div>
+        </div>
+        @endif
+    </div><!-- ./col -->
+    
+</div>
+<!--  Summary end -->
+<!-- filter start -->
+<div class="box box-danger">
+    <div class="box-header">
+        <h3 class="box-title">{{ trans('dashboard.filter'); }}</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+
+            <form role="form" method="get" action="{{ URL::Route('AdminPayment') }}">
+
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <input type="text" class="form-control" style="overflow:hidden;" id="request_id" name="request_id" placeholder="{{trans('dashboard.request_id');}}"  value="{{ Input::get('request_id') }}">
+                    <br>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <input type="text" class="form-control" style="overflow:hidden;" id="start-date" name="start_date" value="{{ Input::get('start_date') }}" placeholder="{{trans('dashboard.start_date');}}">
+                    <br>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <input type="text" class="form-control" style="overflow:hidden;" id="end-date" name="end_date" placeholder="{{trans('dashboard.end_date');}}"  value="{{ Input::get('end_date') }}">
+                    <br>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-lg-4">
+
+                    <select name="status"  class="form-control">
+                        <option value="0">{{ trans('provider.status_grid');}}</option>
+                        <option value="1" <?php echo Input::get('status') == 1 ? "selected" : "" ?> >{{ trans('provider.completed');}}</option>
+                        <option value="2" <?php echo Input::get('status') == 2 ? "selected" : "" ?>>{{ trans('provider.cancelled');}}</option>
+                    </select>
+                    <br>
+                </div>
+
+                <!-- filtro de usuario -->
+                <div class="col-md-4 col-sm-4 col-lg-4">
+
+                    <select id="user" name="user_id[]" style="overflow:hidden;" class="form-control" multiple="multiple">
+                        <?php foreach ($users as $user) { ?>
+                            <option value="<?= $user->id ?>"
+                              <?php 
+                                    if(Input::has('user_id'))
+                                        echo in_array($user->id, Input::get('user_id')) ? "selected" : "" 
+                                ?>
+                                >
+                                <?= $user->first_name; ?>
+                                <?= $user->last_name ?>
+                                    
+                            </option>
+                        <?php } ?>
+                    </select>
+                    <br>
+                </div>
+
+
+                <!-- filtro de prestador -->
+                <div class="col-md-4 col-sm-4 col-lg-4">
+
+                    <select id="provider" name="provider_id[]" style="overflow:hidden;" class="form-control" multiple="multiple">
+                        <?php foreach ($providers as $provider) { ?>
+                            <option value="<?= $provider->id ?>" 
+                                <?php 
+                                    if(Input::has('provider_id'))
+                                        echo in_array($provider->id, Input::get('provider_id')) ? "selected" : "" 
+                                ?>
+                                >
+                                <?= $provider->first_name; ?>
+                                <?= $provider->last_name ?>
+                                
+                            </option>
+                        <?php } ?>
+                    </select>
+                    <br>
+                </div>
+
+
+        </div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+        <button type="submit" name="submit" class="btn btn-primary" value="Filter_Data">{{ trans('payment.filter_data');}}</button>
+        <button type="submit" name="submit" class="btn btn-primary" value="Download_Report">{{ trans('payment.down_report');}}</button>
+    </div>
+
+</form>
+
+</div>
+
+<!-- filter end-->
+
+
+
+
+<div class="box box-info tbl-box">
+    <div align="left" id="paglink"><?php echo $requests->appends(array('type' => Session::get('type'), 'valu' => Session::get('valu')))->links(); ?></div>
+    <table class="table table-bordered">
+        <tbody><tr>
+                <th>{{ trans('dashboard.id_conf');}}</th>
+                <th>{{ trans('payment.user_name');}}</th>
+                <th>{{ trans('customize.Provider');}}</th>
+                <th>{{trans('dashboard.status');}}</th>
+                <th>{{ trans('provider.pay_status');}}</th>
+                <th>{{trans('dashboard.amount');}}</th>                
+                <!--<th>{{ trans('provider.pay_mode');}}</th> -->
+                <th>{{ trans('payment.base_transaction_id');}}</th>
+                <th>{{ trans('payment.base_transaction_transfer_status');}}</th>
+                <th>{{ trans('payment.complete_transaction_id');}}</th>
+                <th>{{ trans('payment.complete_transaction_transfer_status');}}</th>
+                <th>{{ trans('provider.action_grid');}}</th>
+            </tr>
+
+
+            <?php foreach ($requests as $request) { ?>
+
+                <tr>
+                    <td><?= $request->id ?></td>
+
+                    <td><?php echo $request->user_first_name . " " . $request->user_last_name; ?> </td>
+                    <td>
+                        <?php
+                        if ($request->confirmed_provider) {
+                            echo $request->provider_first_name . " " . $request->provider_last_name;
+                        } else {
+                           echo trans('provider.unassigned');
+                        }
+                        ?>
+                    </td>
+
+                    <td>
+                        <?php
+                        if ($request->is_cancelled == 1) {
+
+                            echo "<span class='badge bg-red'>" . trans('provider.cancelled') ."</span>";
+                        } elseif ($request->is_completed == 1) {
+                            echo "<span class='badge bg-green'>". trans('provider.completed')."</span>";
+                        } elseif ($request->is_started == 1) {
+                            echo "<span class='badge bg-yellow'>". trans('provider.started')."</span>";
+                        } elseif ($request->is_provider_arrived == 1) {
+                            echo "<span class='badge bg-yellow'>" . Config::get('app.generic_keywords.Provider') ." ". trans('provider.arrived')."</span>";
+                        } elseif ($request->is_provider_started == 1) {
+                            echo "<span class='badge bg-yellow'>" . Config::get('app.generic_keywords.Provider') ." ". trans('provider.begin')."</span>";
+                        } else {
+                            
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($request->is_paid == 1) {
+
+                            echo "<span class='badge bg-green'>". trans('provider.completed')."</span>";
+                        } elseif ($request->is_paid == 0 && $request->is_completed == 1) {
+                            echo "<span class='badge bg-red'>".trans('provider.pending_grid')."</span>";
+                        } else {
+                            echo "<span class='badge bg-yellow'>". trans('provider.request_not_concluded')."</span>";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php echo sprintf2($request->total, 2); ?>
+                    </td>
+
+                    <td> 
+                        <? 
+                            if($request->base_transaction_id != 0) 
+                                echo $request->base_transaction_id;
+                            else
+                                echo "<span class='badge bg-red'> N/A </span>";
+                        ?></td>
+                    <td> 
+                        <?php
+                            if($request->base_transaction_id != 0){
+                                if($request->base_transaction_transfer_status == Transaction::PAID){
+                                    echo "<span class='badge bg-green'>" .trans('payment.paid') ."</span>";
+                                }
+                                else{
+                                    echo "<span class='badge bg-yellow'>" . trans('payment.pending') ."</span>";
+                                }
+                            }
+                            else{
+                                echo "<span class='badge bg-red'> N/A </span>";
+                            }
+                        ?>
+                    </td>
+                    <td> 
+                        <? 
+                            if($request->complete_transaction_id != 0)
+                                echo $request->complete_transaction_id;
+                            else
+                                echo "<span class='badge bg-red'> N/A </span>";
+                        ?>
+                        
+                    </td>
+                    <td> 
+                        <?php 
+                            if($request->complete_transaction_id != 0){
+                                if($request->complete_transaction_transfer_status == Transaction::PAID){
+                                    echo "<span class='badge bg-green'>" . trans('payment.paid') ."</span>";
+                                }
+                                else{
+                                    echo "<span class='badge bg-yellow'>" .trans('payment.pending') ."</span>";
+                                }
+                            }
+                            else{
+                                echo "<span class='badge bg-red'> N/A </span>";
+                            }
+                        ?>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-flat btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                {{trans('provider.action_grid');}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+                                <?php if(in_array("1101", $array)) { ?>
+                                <li role="presentation"><a role="menuitem" id="map" tabindex="-1" href="{{ URL::Route('AdminRequestsMap', $request->id) }}">{{ trans('provider.map_view');}}</a></li>
+                                <?php } ?>
+                                @if($request->is_paid==0 && $request->is_completed==1 && $request->payment_mode!=1 && $request->total!=0)
+                                <?php if(in_array("1102", $array)) { ?>
+                                <li role="presentation"><a role="menuitem" id="map" tabindex="-1" href="{{ URL::Route('AdminChargeUser', $request->id) }}">{{ trans('provider.charge_user');}}</a></li>
+                                <?php } ?>
+                                @endif
+
+
+
+                                <!--
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo web_url(); ?>/admin/request/delete/<?= $request->id; ?>">Delete Request</a></li>
+                                -->
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            <?php } ?>
+
+        </tbody>
+    </table>
+    <div align="left" id="paglink"><?php echo $requests->appends(array('type' => Session::get('type'), 'valu' => Session::get('valu')))->links(); ?></div>
+</div>
+<!--</form>-->
+</div>
+</div>
+</div>
+
+<script>
+    $(function () {
+        $("#start-date").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                $("#end-date").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#end-date").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                $("#start-date").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#provider").select2({
+            placeholder: "{{trans('dashboard.providers');}}"
+        });
+
+        $("#user").select2({
+            placeholder: "{{trans('dashboard.user');}}"
+        });
+
+        $("#myModal").modal('show');
+    });
+</script>
+
+@stop
